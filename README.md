@@ -7,7 +7,8 @@
 
 ## Datasets
 
-* [Jigsaw Unintended Bias](https://huggingface.co/datasets/jigsaw_unintended_bias)
+* Complete Jigsaw unintented bias data [all_data.csv](https://www.kaggle.com/competitions/jigsaw-unintended-bias-in-toxicity-classification/data?select=all_data.csv)
+* HuggingFace [Jigsaw Unintended Bias](https://huggingface.co/datasets/jigsaw_unintended_bias)
 
 ## Notebooks
 
