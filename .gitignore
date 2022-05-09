@@ -3,8 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# folders that doesn't need to be tracked
 data/all_data.csv
-
+models/
+dp models/
 # C extensions
 *.so
 
