@@ -1,0 +1,50 @@
+## Gender
+
+Noise 0.1
+Accuracy 0.8415, F1 0.4667, AUC 0.928, TPR 0.8737, FPR 0.1613.
+Final bias 0.8854. Eodds 0.8055, TPED 0.0807, FPED 0.7248.
+
+Noise 0.2
+Accuracy 0.8507, F1 0.4733, AUC 0.9175, TPR 0.8449, FPR 0.1488.
+Final bias 0.8748. Eodds 0.8121, TPED 0.1395, FPED 0.6726.
+
+Noise 0.25
+Accuracy 0.8533, F1 0.4749, AUC 0.8934, TPR 0.8356, FPR 0.1451.
+Final bias 0.8554. Eodds 0.737, TPED 0.0688, FPED 0.6682.
+
+Noise 0.3
+Accuracy 0.8291, F1 0.4445, AUC 0.9018, TPR 0.8615, FPR 0.1737.
+Final bias 0.8608. Eodds 0.7797, TPED 0.0965, FPED 0.6832.
+
+Noise 0.35
+Accuracy 0.8018, F1 0.4142, AUC 0.9043, TPR 0.8829, FPR 0.2052.
+Final bias 0.8652. Eodds 0.8083, TPED 0.0611, FPED 0.7472.
+
+Noise 0.5
+Accuracy 0.8111, F1 0.4199, AUC 0.8953, TPR 0.8615, FPR 0.1933.
+Final bias 0.8603. Eodds 0.6932, TPED 0.0756, FPED 0.6176.
+## Race
+
+Noise 0.1
+Accuracy 0.8415, F1 0.4667, AUC 0.928, TPR 0.8737, FPR 0.1613.
+Final bias 0.8603. Eodds 2.0624, TPED 0.255, FPED 1.8073.
+
+Noise 0.2
+Accuracy 0.8507, F1 0.4733, AUC 0.9175, TPR 0.8449, FPR 0.1488.
+Final bias 0.8424. Eodds 2.2553, TPED 0.373, FPED 1.8823.
+
+Noise 0.25
+Accuracy 0.8533, F1 0.4749, AUC 0.8934, TPR 0.8356, FPR 0.1451.
+Final bias 0.8323. Eodds 2.0039, TPED 0.2587, FPED 1.7452.
+
+Noise 0.3
+Accuracy 0.8291, F1 0.4445, AUC 0.9018, TPR 0.8615, FPR 0.1737.
+Final bias 0.8321. Eodds 2.0591, TPED 0.3933, FPED 1.6657.
+
+Noise 0.35 
+Accuracy 0.8018, F1 0.4142, AUC 0.9043, TPR 0.8829, FPR 0.2052.
+Final bias 0.8426. Eodds 2.2277, TPED 0.3149, FPED 1.9128.
+
+Noise 0.5
+Accuracy 0.8111, F1 0.4199, AUC 0.8953, TPR 0.8615, FPR 0.1933.
+Final bias 0.8154. Eodds 2.0596, TPED 0.4478, FPED 1.6118.
