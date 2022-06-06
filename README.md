@@ -23,9 +23,9 @@ Pretrained [Bert-small](https://huggingface.co/prajjwal1/bert-small). We only tr
 
 ## Expertimentation Setup
 
-* [Tokenize jigsaw comments](src/tokenize-jigsaw-comments.ipynb) is used to undersample the train data. Then tokenize both the undersampled train set and original test set.
-* [Tuning on jigsaw unintended bias](src/tuning-on-jigsaw-unintended-bias.ipynb) notebook is used to run the non-private trainings.
-* [Private tuning on jigsaw unintended bias](src/private-tuning-on-jigsaw-unintended-bias.ipynb) notebook is used to run the private trainings.
+* [Tokenize jigsaw comments](src/jigsaw%20unintended%20bias/tokenize-jigsaw-comments-using-bert.ipynb) is used to preprocess the data, split into train, test, validation. Then tokenize both the all of them.
+* [Normal pre-training](src/normal%20pre-training.py) notebook is used to run the non-private trainings using pre-trained models.
+* [Private pre-training](src/private%20pre-training.py) notebook is used to run the private trainings using pre-trained models.
 * [benchmark](src/benchmark.ipynb) benchmarks the experimentation results based on the target identity columns. For now only gender and race are used.
 
 ## Others
