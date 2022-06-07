@@ -23,6 +23,8 @@ text_column = Config.text_column
 target_column = Config.raw_target_column
 id_column = Config.raw_id_column
 identities = ['male', 'female', 'white', 'black']
+categories = ['gender', 'gender', 'race', 'race']
+
 features = [text_column, target_column] + identities + ['targetMinority', 'targetCategory']
 selected_columns = [id_column] + features
 
@@ -73,7 +75,6 @@ class SocialBiasProcessor:
     @staticmethod
     def process(df: pd.DataFrame):
         # create binary columns for target indentity groups from annotation
-        categories = ['gender', 'gender', 'race', 'race']
         functions = [SocialBiasProcessor.is_male, SocialBiasProcessor.is_female, SocialBiasProcessor.is_white, SocialBiasProcessor.is_black]
         for index, column in enumerate(identities):
             df[column] = df[df['targetCategory']==categories[index]]['targetMinority'].apply(functions[index])
