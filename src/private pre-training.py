@@ -110,19 +110,15 @@ with open(root + 'test.pkl', 'rb') as input_file:
 
 print(train_tokenized)
 
-# Remove id column from the data to be batched
-id_column = Config.id_column 
-train_tokenized = train_tokenized.remove_columns(id_column)
-test_tokenized = test_tokenized.remove_columns(id_column)
-validation_tokenized = validation_tokenized.remove_columns(id_column)
-
 # Training phase
 # Data loader
 BATCH_SIZE = Config.batch_size
+# Remove id column from the data to be batched
+id_column = Config.id_column
 
-train_dataloader = DataLoader(train_tokenized, batch_size=BATCH_SIZE)
-validation_dataloader = DataLoader(validation_tokenized, batch_size=BATCH_SIZE)
-test_dataloader = DataLoader(test_tokenized, batch_size=BATCH_SIZE)
+train_dataloader = DataLoader(train_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE)
+validation_dataloader = DataLoader(validation_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE*5)
+test_dataloader = DataLoader(test_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE*5)
 
 # on Kaggle add the utility script from File->Add utility script
 from train_utils import TrainUtil, ModelCheckPoint, EarlyStopping
@@ -151,13 +147,23 @@ train_util = TrainUtil(Config.id_column, Config.target_column, device)
 from opacus import PrivacyEngine
 
 privacy_engine = PrivacyEngine()
-model, optimizer, train_dataloader = privacy_engine.make_private(
+# model, optimizer, train_dataloader = privacy_engine.make_private(
+#     module=model,
+#     optimizer=optimizer,
+#     data_loader=train_dataloader,
+#     noise_multiplier=Config.noise_multiplier,
+#     max_grad_norm=Config.max_grad_norm,
+#     poisson_sampling=False,
+# )
+
+model, optimizer, train_dataloader = privacy_engine.make_private_with_epsilon(
     module=model,
     optimizer=optimizer,
     data_loader=train_dataloader,
-    noise_multiplier=Config.noise_multiplier,
+    target_delta=Config.delta_list[-1],
+    target_epsilon=Config.target_epsilon, 
+    epochs=EPOCHS,
     max_grad_norm=Config.max_grad_norm,
-    poisson_sampling=False,
 )
 
 # Train loop
@@ -206,25 +212,13 @@ for epoch in range(1, EPOCHS+1):
 # load the best model
 model, _, _, best_epoch = TrainUtil.load_model(model, optimizer, lr_scheduler, device, filepath=best_model_path)
 
+# make_private_with_epsilon function creates inconsistent train dataloader size
+train_dataloader = DataLoader(train_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE*5)
 train_loss, train_result, train_probs = train_util.evaluate(model, train_dataloader, best_epoch, 'Train')
 # no need to reevaluate if the validation set if the last model is the best one
 if best_epoch != epoch:
     val_loss, val_result, val_probs = train_util.evaluate(model, validation_dataloader, best_epoch, 'Validation')
 test_loss, test_result, test_probs = train_util.evaluate(model, test_dataloader, best_epoch, 'Test')
-
-# load the original tokenized files, since we removed the id columns earlier
-# and id columns are needed for the result dumping part
-with open(root + 'train.pkl', 'rb') as input_file:
-    train_tokenized = pickle.load(input_file)
-    input_file.close()
-    
-with open(root + 'validation.pkl', 'rb') as input_file:
-    validation_tokenized = pickle.load(input_file)
-    input_file.close()
-    
-with open(root + 'test.pkl', 'rb') as input_file:
-    test_tokenized = pickle.load(input_file)
-    input_file.close()
 
 # Save the results
 train_util.dump_results(
