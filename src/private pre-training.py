@@ -35,40 +35,36 @@ from dataclasses import dataclass
 
 @dataclass
 class Config:
-    # train config
     model_name = 'bert-base-uncased'
-    batch_size = 64
-    learning_rate = 1e-4
-    epochs = 20
-    num_labels = 2
+    dataset_name = 'ucberkeley-dlab/measuring-hate-speech'
+    tokenizer_root = '/kaggle/input/tokenize-ucberkeley-using-bert/'
 
-    dataset_name = 'social_bias_frames'
-    text_column = 'post'
-    # if the raw id column is string, replace that with an integer index during preprocessing 
-    raw_id_column = 'HITId'
-    id_column = 'index'
-
-    # the original id column HITId has been replaced with index because it was string 
-    # and torch didn't support str format
-    raw_id_column = 'HITId'
-    id_column = 'index'
-
-    # Private training config
-    delta_list = [5e-2, 1e-3, 1e-5]
-    noise_multiplier = 0.45
-    max_grad_norm = 1
-    max_physical_batch_size = 32
+    text_column = 'text'
+    # if the raw id column is string, replace that with an integer index during preprocessing
+    id_column = 'comment_id'
 
     # target in raw dataset. However, it will be renamed to `labels` here to facilitate training setup
-    raw_target_column = 'offensiveYN'
+    raw_target_column = 'hatespeech'
     target_column = 'labels'
-
+    
     # If needs to be splitted into train test validation set
     need_to_split = False
-    # test and validation data with each be 50% of this amount
+    # if need_to_split is True, test and validation data with each be 50% of this amount
     test_size = 0.3
     max_seq_length = 128
     seed = 2022
+    
+    batch_size = 64
+    learning_rate = 1e-3
+    epochs = 10
+    num_labels = 2
+    
+    # Private training config
+    delta_list = [5e-2, 1e-3, 1e-6]
+    noise_multiplier = 0.45
+    max_grad_norm = 1
+    max_physical_batch_size = 32
+    target_epsilon = 9.0
 
 # Set seed
 import random
@@ -92,37 +88,32 @@ print(device)
 # Load tokenized data
 text = Config.text_column
 target = Config.target_column
-root = '/kaggle/input/tokenize-social-bias-using-bert/'
 
 import pickle
     
-with open(root + 'train.pkl', 'rb') as input_file:
+with open(os.path.join(Config.tokenizer_root, 'train.pkl'), 'rb') as input_file:
     train_tokenized = pickle.load(input_file)
     input_file.close()
     
-with open(root + 'validation.pkl', 'rb') as input_file:
+with open(os.path.join(Config.tokenizer_root, 'validation.pkl'), 'rb') as input_file:
     validation_tokenized = pickle.load(input_file)
     input_file.close()
     
-with open(root + 'test.pkl', 'rb') as input_file:
+with open(os.path.join(Config.tokenizer_root, 'test.pkl'), 'rb') as input_file:
     test_tokenized = pickle.load(input_file)
     input_file.close()
 
 print(train_tokenized)
 
-# Remove id column from the data to be batched
-id_column = Config.id_column 
-train_tokenized = train_tokenized.remove_columns(id_column)
-test_tokenized = test_tokenized.remove_columns(id_column)
-validation_tokenized = validation_tokenized.remove_columns(id_column)
-
 # Training phase
 # Data loader
 BATCH_SIZE = Config.batch_size
+# Remove id column from the data to be batched
+id_column = Config.id_column
 
-train_dataloader = DataLoader(train_tokenized, batch_size=BATCH_SIZE)
-validation_dataloader = DataLoader(validation_tokenized, batch_size=BATCH_SIZE)
-test_dataloader = DataLoader(test_tokenized, batch_size=BATCH_SIZE)
+train_dataloader = DataLoader(train_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE)
+validation_dataloader = DataLoader(validation_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE*5)
+test_dataloader = DataLoader(test_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE*5)
 
 # on Kaggle add the utility script from File->Add utility script
 from train_utils import TrainUtil, ModelCheckPoint, EarlyStopping
@@ -151,13 +142,24 @@ train_util = TrainUtil(Config.id_column, Config.target_column, device)
 from opacus import PrivacyEngine
 
 privacy_engine = PrivacyEngine()
-model, optimizer, train_dataloader = privacy_engine.make_private(
+
+# model, optimizer, train_dataloader = privacy_engine.make_private(
+#     module=model,
+#     optimizer=optimizer,
+#     data_loader=train_dataloader,
+#     noise_multiplier=Config.noise_multiplier,
+#     max_grad_norm=Config.max_grad_norm,
+#     poisson_sampling=False,
+# )
+
+model, optimizer, train_dataloader = privacy_engine.make_private_with_epsilon(
     module=model,
     optimizer=optimizer,
     data_loader=train_dataloader,
-    noise_multiplier=Config.noise_multiplier,
+    target_delta=Config.delta_list[-1],
+    target_epsilon=Config.target_epsilon, 
+    epochs=EPOCHS,
     max_grad_norm=Config.max_grad_norm,
-    poisson_sampling=False,
 )
 
 # Train loop
@@ -206,25 +208,13 @@ for epoch in range(1, EPOCHS+1):
 # load the best model
 model, _, _, best_epoch = TrainUtil.load_model(model, optimizer, lr_scheduler, device, filepath=best_model_path)
 
+# make_private_with_epsilon function creates inconsistent train dataloader size
+train_dataloader = DataLoader(train_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE*5)
 train_loss, train_result, train_probs = train_util.evaluate(model, train_dataloader, best_epoch, 'Train')
 # no need to reevaluate if the validation set if the last model is the best one
 if best_epoch != epoch:
     val_loss, val_result, val_probs = train_util.evaluate(model, validation_dataloader, best_epoch, 'Validation')
 test_loss, test_result, test_probs = train_util.evaluate(model, test_dataloader, best_epoch, 'Test')
-
-# load the original tokenized files, since we removed the id columns earlier
-# and id columns are needed for the result dumping part
-with open(root + 'train.pkl', 'rb') as input_file:
-    train_tokenized = pickle.load(input_file)
-    input_file.close()
-    
-with open(root + 'validation.pkl', 'rb') as input_file:
-    validation_tokenized = pickle.load(input_file)
-    input_file.close()
-    
-with open(root + 'test.pkl', 'rb') as input_file:
-    test_tokenized = pickle.load(input_file)
-    input_file.close()
 
 # Save the results
 train_util.dump_results(

@@ -26,30 +26,29 @@ import os
 from dataclasses import dataclass
 @dataclass
 class Config:
-    # train config
     model_name = 'bert-base-uncased'
-    batch_size = 64
-    learning_rate = 1e-4
-    epochs = 20
-    num_labels = 2
+    dataset_name = 'ucberkeley-dlab/measuring-hate-speech'
+    tokenizer_root = '/kaggle/input/tokenize-ucberkeley-using-bert/'
 
-    dataset_name = 'social_bias_frames'
-    text_column = 'post'
+    text_column = 'text'
+    # if the raw id column is string, replace that with an integer index during preprocessing
+    id_column = 'comment_id'
 
-    # if the raw id column is string, replace that with an integer index during preprocessing 
-    raw_id_column = 'HITId'
-    id_column = 'index'
-
-    # target in raw dataset is offensiveYN. However, it will be renamed to `labels` here to facilitate training setup
-    raw_target_column = 'offensiveYN'
+    # target in raw dataset. However, it will be renamed to `labels` here to facilitate training setup
+    raw_target_column = 'hatespeech'
     target_column = 'labels'
     
     # If needs to be splitted into train test validation set
     need_to_split = False
-    # test and validation data with each be 50% of this amount
+    # if need_to_split is True, test and validation data with each be 50% of this amount
     test_size = 0.3
     max_seq_length = 128
     seed = 2022
+    
+    batch_size = 64
+    learning_rate = 1e-3
+    epochs = 10
+    num_labels = 2
 
 # Set seed
 import random
@@ -73,38 +72,32 @@ print(device)
 # Load tokenized data
 text = Config.text_column
 target = Config.target_column
-root = '/kaggle/input/tokenize-social-bias-using-bert/'
 
 import pickle
     
-with open(root + 'train.pkl', 'rb') as input_file:
+with open(os.path.join(Config.tokenizer_root, 'train.pkl'), 'rb') as input_file:
     train_tokenized = pickle.load(input_file)
     input_file.close()
     
-with open(root + 'validation.pkl', 'rb') as input_file:
+with open(os.path.join(Config.tokenizer_root, 'validation.pkl'), 'rb') as input_file:
     validation_tokenized = pickle.load(input_file)
     input_file.close()
     
-with open(root + 'test.pkl', 'rb') as input_file:
+with open(os.path.join(Config.tokenizer_root, 'test.pkl'), 'rb') as input_file:
     test_tokenized = pickle.load(input_file)
     input_file.close()
 
 print(train_tokenized)
 
-# Remove id column from the data to be batched
-id_column = Config.id_column
-
-train_tokenized = train_tokenized.remove_columns(id_column)
-test_tokenized = test_tokenized.remove_columns(id_column)
-validation_tokenized = validation_tokenized.remove_columns(id_column)
-
 # Training phase
 # Data loader
 BATCH_SIZE = Config.batch_size
+# Remove id column from the data to be batched
+id_column = Config.id_column
 
-train_dataloader = DataLoader(train_tokenized, batch_size=BATCH_SIZE)
-validation_dataloader = DataLoader(validation_tokenized, batch_size=BATCH_SIZE)
-test_dataloader = DataLoader(test_tokenized, batch_size=BATCH_SIZE)
+train_dataloader = DataLoader(train_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE)
+validation_dataloader = DataLoader(validation_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE*5)
+test_dataloader = DataLoader(test_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE*5)
 
 from train_utils import TrainUtil, EarlyStopping, ModelCheckPoint
 
@@ -167,20 +160,6 @@ train_loss, train_result, train_probs = train_util.evaluate(model, train_dataloa
 if best_epoch != epoch:
     val_loss, val_result, val_probs = train_util.evaluate(model, validation_dataloader, best_epoch, 'Validation')
 test_loss, test_result, test_probs = train_util.evaluate(model, test_dataloader, best_epoch, 'Test')
-
-# load the original tokenized files, since we removed the id columns earlier
-# and id columns are needed for the result dumping part
-with open(root + 'train.pkl', 'rb') as input_file:
-    train_tokenized = pickle.load(input_file)
-    input_file.close()
-    
-with open(root + 'validation.pkl', 'rb') as input_file:
-    validation_tokenized = pickle.load(input_file)
-    input_file.close()
-    
-with open(root + 'test.pkl', 'rb') as input_file:
-    test_tokenized = pickle.load(input_file)
-    input_file.close()
 
 # Save the results
 train_util.dump_results(
