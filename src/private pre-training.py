@@ -35,40 +35,34 @@ from dataclasses import dataclass
 
 @dataclass
 class Config:
-    # train config
     model_name = 'bert-base-uncased'
-    batch_size = 64
-    learning_rate = 1e-4
-    epochs = 20
-    num_labels = 2
-
-    dataset_name = 'social_bias_frames'
-    text_column = 'post'
-    # if the raw id column is string, replace that with an integer index during preprocessing 
-    raw_id_column = 'HITId'
-    id_column = 'index'
-
-    # the original id column HITId has been replaced with index because it was string 
-    # and torch didn't support str format
-    raw_id_column = 'HITId'
-    id_column = 'index'
-
-    # Private training config
-    delta_list = [5e-2, 1e-3, 1e-5]
-    noise_multiplier = 0.45
-    max_grad_norm = 1
-    max_physical_batch_size = 32
+    dataset_name = 'ucberkeley-dlab/measuring-hate-speech'
+    text_column = 'text'
+    # if the raw id column is string, replace that with an integer index during preprocessing
+    id_column = 'comment_id'
 
     # target in raw dataset. However, it will be renamed to `labels` here to facilitate training setup
-    raw_target_column = 'offensiveYN'
+    raw_target_column = 'hatespeech'
     target_column = 'labels'
-
+    
     # If needs to be splitted into train test validation set
     need_to_split = False
-    # test and validation data with each be 50% of this amount
+    # if need_to_split is True, test and validation data with each be 50% of this amount
     test_size = 0.3
     max_seq_length = 128
     seed = 2022
+    
+    batch_size = 64
+    learning_rate = 1e-3
+    epochs = 10
+    num_labels = 2
+    
+    # Private training config
+    delta_list = [5e-2, 1e-3, 1e-6]
+    noise_multiplier = 0.45
+    max_grad_norm = 1
+    max_physical_batch_size = 32
+    target_epsilon = 9.0
 
 # Set seed
 import random
@@ -147,6 +141,7 @@ train_util = TrainUtil(Config.id_column, Config.target_column, device)
 from opacus import PrivacyEngine
 
 privacy_engine = PrivacyEngine()
+
 # model, optimizer, train_dataloader = privacy_engine.make_private(
 #     module=model,
 #     optimizer=optimizer,
