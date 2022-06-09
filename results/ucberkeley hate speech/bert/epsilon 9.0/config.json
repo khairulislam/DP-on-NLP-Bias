@@ -1,6 +1,7 @@
 {
     "model_name": "bert-base-uncased",
     "dataset_name": "ucberkeley-dlab/measuring-hate-speech",
+    "tokenizer_root": "/kaggle/input/tokenize-ucberkeley-using-bert/",
     "text_column": "text",
     "id_column": "comment_id",
     "raw_target_column": "hatespeech",

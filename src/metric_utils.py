@@ -94,7 +94,7 @@ def calculate_metrics(df, group):
     auc = roc_auc_score(y_true, y_prob)
 
     results = [auc]
-    methods = [accuracy_score, f1_score, precision_score, recall_score, true_positive_rate, false_positive_rate]
+    methods = [accuracy_score, f1_score, precision_score, recall_score, false_positive_rate]
     for method in methods:
         results.append(method(y_true, y_pred))
 
