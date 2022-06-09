@@ -37,6 +37,8 @@ from dataclasses import dataclass
 class Config:
     model_name = 'bert-base-uncased'
     dataset_name = 'ucberkeley-dlab/measuring-hate-speech'
+    tokenizer_root = '/kaggle/input/tokenize-ucberkeley-using-bert/'
+
     text_column = 'text'
     # if the raw id column is string, replace that with an integer index during preprocessing
     id_column = 'comment_id'
@@ -86,19 +88,18 @@ print(device)
 # Load tokenized data
 text = Config.text_column
 target = Config.target_column
-root = '/kaggle/input/tokenize-social-bias-using-bert/'
 
 import pickle
     
-with open(root + 'train.pkl', 'rb') as input_file:
+with open(os.path.join(Config.tokenizer_root, 'train.pkl'), 'rb') as input_file:
     train_tokenized = pickle.load(input_file)
     input_file.close()
     
-with open(root + 'validation.pkl', 'rb') as input_file:
+with open(os.path.join(Config.tokenizer_root, 'validation.pkl'), 'rb') as input_file:
     validation_tokenized = pickle.load(input_file)
     input_file.close()
     
-with open(root + 'test.pkl', 'rb') as input_file:
+with open(os.path.join(Config.tokenizer_root, 'test.pkl'), 'rb') as input_file:
     test_tokenized = pickle.load(input_file)
     input_file.close()
 

@@ -1,0 +1,25 @@
+{
+    "model_name": "bert-base-uncased",
+    "dataset_name": "ucberkeley-dlab/measuring-hate-speech",
+    "text_column": "text",
+    "id_column": "comment_id",
+    "raw_target_column": "hatespeech",
+    "target_column": "labels",
+    "need_to_split": false,
+    "test_size": 0.3,
+    "max_seq_length": 128,
+    "seed": 2022,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "epochs": 10,
+    "num_labels": 2,
+    "delta_list": [
+        0.05,
+        0.001,
+        1e-06
+    ],
+    "noise_multiplier": 0.45,
+    "max_grad_norm": 1,
+    "max_physical_batch_size": 32,
+    "target_epsilon": 6.0
+}

@@ -4,6 +4,28 @@
 
 In this work we evaluate how differentially private training impacts the NLP models based on overall performance, bias and robustness. We experiment with different privacy budgets, bias metrics, adversarial attacks to perform the evaluation. Our experiments show that Differential Privacy (DP) can mitigate the bias of the NLP model at the cost of reduced overall performance.
 
+## Folder Structure
+
+Currently we have datasets `jigsaw unintended bias`, `ucberkeley hate speech` and models `bert-base-uncased`, `distilbert-base-uncased` in our stable version. We also have `social bias frames` dataset, but it will be removed.
+
+* results
+  * dataset
+  * model
+    * normal (dataset trained using normal process)
+    * epsilon budget (dataset trained using specified privacy budget)
+      * config.json (config dataclass, used to reproduce the experiment in future)
+      * performance.txt (loss output during each epoch and for the best model)
+      * result.csv (output predictions for train, test, validation)
+
+* src
+  * dataset
+    * tokenize dataset using model.notebook
+    * tuning on dataset using model.notebook
+    * private tuning on dataset using model.notebook
+    * benchmark.notebook (calculate bias and overall results  on both normal and private train data)
+  * generic template python scripts
+  * util files
+
 ## Dataset
 
 Complete Jigsaw unintented bias data [all_data.csv](https://www.kaggle.com/competitions/jigsaw-unintended-bias-in-toxicity-classification/data?select=all_data.csv)

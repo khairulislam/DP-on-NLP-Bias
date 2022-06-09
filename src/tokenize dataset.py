@@ -7,14 +7,13 @@ from dataclasses import dataclass
 @dataclass
 class Config:
     model_name = 'bert-base-uncased'
-    dataset_name = 'social_bias_frames'
-    text_column = 'post'
+    dataset_name = 'ucberkeley-dlab/measuring-hate-speech'
+    text_column = 'text'
     # if the raw id column is string, replace that with an integer index during preprocessing 
-    raw_id_column = 'HITId'
-    id_column = 'index'
+    id_column = 'comment_id'
 
     # target in raw dataset. However, it will be renamed to `labels` here to facilitate training setup
-    raw_target_column = 'offensiveYN'
+    raw_target_column = 'hatespeech'
     target_column = 'labels'
     
     # If needs to be splitted into train test validation set
