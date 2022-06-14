@@ -6,19 +6,22 @@ from sklearn.metrics import f1_score, accuracy_score, roc_auc_score
 from transformers import AutoModelForSequenceClassification
 
 class TrainUtil:
-    def __init__(self, id_column, target, device):
+    def __init__(self, id_column, target, device, disable_progress=False):
         self.sigmoid = torch.nn.Sigmoid()
         self.device = device
         self.target = target
         self.id_column = id_column
-
+        self.disable_progress = disable_progress
 
     def evaluate(self, model, test_dataloader, epoch, data_type='Test'):    
         model.eval()
 
         losses, total_labels = [], []
         total_probs = torch.tensor([], dtype=torch.float32)
-        progress_bar = tqdm(range(len(test_dataloader)), desc=f'Epoch {epoch} ({data_type})')
+        progress_bar = tqdm(
+            range(len(test_dataloader)), desc=f'Epoch {epoch} ({data_type})', 
+            disable= self.disable_progress
+        )
         
         for batch in test_dataloader:
             inputs = {k: v.to(self.device) for k, v in batch.items()}
@@ -51,7 +54,10 @@ class TrainUtil:
         
         losses, total_labels = [], []
         total_probs = torch.tensor([], dtype=torch.float32)
-        progress_bar = tqdm(range(len(train_dataloader)), desc=f'Epoch {epoch} (Train)')
+        progress_bar = tqdm(
+            range(len(train_dataloader)), desc=f'Epoch {epoch} (Train)', 
+            disable=self.disable_progress
+        )
 
         for _, data in enumerate(train_dataloader):
             optimizer.zero_grad()
@@ -91,7 +97,10 @@ class TrainUtil:
         losses, total_labels = [], []
         total_probs = torch.tensor([], dtype=torch.float32)
 
-        progress_bar = tqdm(range(len(memory_safe_data_loader)), desc=f'Epoch {epoch} (Train)')
+        progress_bar = tqdm(
+            range(len(memory_safe_data_loader)), 
+            desc=f'Epoch {epoch} (Train)', disable=self.disable_progress
+            )
 
         for _, data in enumerate(memory_safe_data_loader):
             optimizer.zero_grad()
