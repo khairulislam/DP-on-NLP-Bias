@@ -1,18 +1,9 @@
-# Need to install on kaggle and google colab
-# !pip install datasets
-import datasets
-
-
 # !pip install opacus
-import opacaus
+from opacus import PrivacyEngine
 from opacus.utils.batch_memory_manager import BatchMemoryManager
 
 # Need to install on google colab
 # !pip install transformers
-
-from tqdm.auto import tqdm
-from transformers import AutoModelForSequenceClassification, Conv1D
-from torch.optim import AdamW
 import torch
 from torch.utils.data import DataLoader
 
@@ -120,6 +111,7 @@ from train_utils import TrainUtil, ModelCheckPoint, EarlyStopping
 num_labels = Config.num_labels
 model_name = Config.model_name
 model = TrainUtil.load_pretrained_model(model_name, num_labels)
+model.train()
 
 # Define optimizer
 LEARNING_RATE = Config.learning_rate
@@ -139,8 +131,6 @@ early_stopping = EarlyStopping(patience=3, min_delta=0)
 train_util = TrainUtil(Config.id_column, Config.target_column, device)
 
 # Privacy engine
-from opacus import PrivacyEngine
-
 privacy_engine = PrivacyEngine()
 
 # model, optimizer, train_dataloader = privacy_engine.make_private(

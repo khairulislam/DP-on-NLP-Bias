@@ -152,7 +152,7 @@ val_tokenized.set_format("torch")
 test_tokenized = test_tokenized.remove_columns([text_column])
 test_tokenized.set_format("torch")
 
-# dump data as pick
+# dump data as pickle
 import pickle
 
 with open('train.pkl', 'wb') as output:

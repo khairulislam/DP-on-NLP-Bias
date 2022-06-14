@@ -1,6 +1,6 @@
 # Need to install on kaggle and google colab
 # !pip install datasets
-import datasets
+# import datasets
 
 # Need to install on google colab
 # !pip install transformers

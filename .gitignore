@@ -7,9 +7,7 @@ __pycache__/
 data/
 models/
 dp models/
-bert-tiny-tokenize-jigsaw-comments/
-bert-small-tokenize-jigsaw-comments/
-bert-medium-tokenize-jigsaw-comments/
+experiment/
 # C extensions
 *.so
 
