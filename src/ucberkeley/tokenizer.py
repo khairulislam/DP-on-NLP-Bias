@@ -2,6 +2,10 @@
 python tokenizer.py --model "bert-base-uncased" --path "experiment/run 1"
 python tokenizer.py --model "bert-base-uncased" --path "experiment/run 2"
 python tokenizer.py --model "bert-base-uncased" --path "experiment/run 3"
+
+python tokenizer.py --model "distilbert-base-uncased" --path "experiment/run 1"
+python tokenizer.py --model "distilbert-base-uncased" --path "experiment/run 2"
+python tokenizer.py --model "distilbert-base-uncased" --path "experiment/run 3"
 """
 import pandas as pd
 import argparse

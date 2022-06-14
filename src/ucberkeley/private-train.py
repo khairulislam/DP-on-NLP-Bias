@@ -20,16 +20,17 @@ from dataclasses import dataclass
 class Config:
     batch_size = 64
     learning_rate = 1e-3
-    epochs = 1
+    epochs = 10
     num_labels = 2
     early_stopping = 3
 
     delta_list = [5e-2, 1e-3, 1e-6]
+    # must be one from the delta_list
     delta = 1e-6
-    noise_multiplier = 0.4
+    # noise_multiplier = 0.4
     max_grad_norm = 1
     max_physical_batch_size = 32
-    target_epsilon = 1.0
+    # target_epsilon = 1.0
 
 def get_arguments():
     parser = argparse.ArgumentParser(description='Tokenize ucberkeley', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -37,12 +38,18 @@ def get_arguments():
         '-p', '--path',help="Tokenized file's directory.", 
         type=str, default=None
     )
+    parser.add_argument(
+        '-e', '--epsilon',help="Target epsilon (privacy budget) for the private training", 
+        type=float, default=1.0
+    )
     return parser.parse_args()
 
 
 def main():
     args = get_arguments()
     tokenizer_root = args.path
+    Config.target_epsilon = args.epsilon
+
     output_folder = os.path.join(args.path, f'epsilon {Config.target_epsilon}')
 
     if not os.path.exists(output_folder):
@@ -134,7 +141,7 @@ def main():
 
         print(
         f"Epoch: {epoch} | "
-        f"ɛ: {epsilons:0.3f} |"
+        f"ɛ: {epsilons} |"
         f"Train loss: {train_loss:.3f} | "
         f"Train result: {train_result} |\n"
         f"Validation loss: {val_loss:.3f} | "
@@ -153,13 +160,16 @@ def main():
     # load the best model
     model, _, _, best_epoch = TrainUtil.load_model(model, optimizer, lr_scheduler, device, filepath=best_model_path)
 
+    # make private engine messes up the train_dataloader length
+    # so without the following, you might face lenght mismatch error when dumping results
+    train_dataloader = DataLoader(train_tokenized.remove_columns(id_column), batch_size=BATCH_SIZE*5)
     train_loss, train_result, train_probs = train_util.evaluate(model, train_dataloader, best_epoch, 'Train')
     # no need to reevaluate if the validation set if the last model is the best one
     if best_epoch != epoch:
         val_loss, val_result, val_probs = train_util.evaluate(model, validation_dataloader, best_epoch, 'Validation')
     test_loss, test_result, test_probs = train_util.evaluate(model, test_dataloader, best_epoch, 'Test')
 
-    print(f'At best epoch, train result {train_result}, validation result {val_result}, test result {test_result}')
+    print(f'At best epoch, train result {train_result} \nvalidation result {val_result} \ntest result {test_result}')
     # Save the results
     train_util.dump_results(
         output_folder, train_probs, train_tokenized, 

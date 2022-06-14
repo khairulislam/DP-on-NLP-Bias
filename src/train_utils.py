@@ -5,6 +5,9 @@ import pandas as pd
 from sklearn.metrics import f1_score, accuracy_score, roc_auc_score
 from transformers import AutoModelForSequenceClassification
 
+from time import process_time
+from datetime import timedelta
+
 class TrainUtil:
     def __init__(self, id_column, target, device, disable_progress=False):
         self.sigmoid = torch.nn.Sigmoid()
@@ -53,6 +56,7 @@ class TrainUtil:
         model.train()
         
         losses, total_labels = [], []
+        train_start_time = process_time()
         total_probs = torch.tensor([], dtype=torch.float32)
         progress_bar = tqdm(
             range(len(train_dataloader)), desc=f'Epoch {epoch} (Train)', 
@@ -87,7 +91,8 @@ class TrainUtil:
                 f1=np.round(f1_score(total_labels, total_probs>=0.5), 4)
             )
 
-
+        print(f'Elapsed time {timedelta(seconds=process_time()-train_start_time)}')
+            
         train_loss = np.mean(losses)
         train_result = TrainUtil.calculate_result(np.array(total_labels), np.array(total_probs))
 
@@ -96,7 +101,8 @@ class TrainUtil:
     def dp_train(self, model, optimizer, epoch, memory_safe_data_loader):
         losses, total_labels = [], []
         total_probs = torch.tensor([], dtype=torch.float32)
-
+        train_start_time = process_time()
+        
         progress_bar = tqdm(
             range(len(memory_safe_data_loader)), 
             desc=f'Epoch {epoch} (Train)', disable=self.disable_progress
@@ -128,6 +134,7 @@ class TrainUtil:
                 f1=np.round(f1_score(total_labels, total_probs>=0.5), 4)
             )
 
+        print(f'Elapsed time {timedelta(seconds=process_time()-train_start_time)}')
         train_loss = np.mean(losses)
         train_result = TrainUtil.calculate_result(np.array(total_labels), np.array(total_probs))
 

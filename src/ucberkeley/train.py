@@ -1,6 +1,11 @@
 """
 python train.py -p "experiment/run 1/bert-base-uncased"
 python train.py -p "experiment/run 2/bert-base-uncased"
+python train.py -p "experiment/run 3/bert-base-uncased"
+
+python train.py -p "experiment/run 1/distilbert-base-uncased"
+python train.py -p "experiment/run 2/distilbert-base-uncased"
+python train.py -p "experiment/run 3/distilbert-base-uncased"
 """
 
 import argparse
@@ -17,7 +22,7 @@ from dataclasses import dataclass
 class Config:
     batch_size = 64
     learning_rate = 1e-3
-    epochs = 1
+    epochs = 10
     num_labels = 2
     early_stopping = 3
 
@@ -45,7 +50,7 @@ def main():
     # redirect print to a file
     # original_stdout = sys.stdout
     # output_file = open(os.path.join(output_folder, 'output.txt'), 'w')
-    sys.stdout = sys.__stdout__
+    # sys.stdout = sys.__stdout__
 
     # set seed
     global_seed = configDict['seed']
@@ -124,7 +129,7 @@ def main():
         val_loss, val_result, val_probs = train_util.evaluate(model, validation_dataloader, best_epoch, 'Validation')
     test_loss, test_result, test_probs = train_util.evaluate(model, test_dataloader, best_epoch, 'Test')
 
-    print(f'At best epoch, train result {train_result}, validation result {val_result}, test result {test_result}')
+    print(f'At best epoch, train result {train_result}\nvalidation result {val_result}\n, test result {test_result}')
     # Save the results
     train_util.dump_results(
         output_folder, train_probs, train_tokenized, 
