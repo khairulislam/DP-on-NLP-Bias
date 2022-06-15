@@ -1,0 +1,18 @@
+Dataset shape (135556, 131)
+Target column name has been changed from hatespeech to labels
+Dataset shape after aggregating annotations (38564, 56)
+Train dataset
+   Value  Count   Count(%)
+0      0  19345  71.664073
+1      1   7649  28.335927 
+
+Validation dataset
+   Value  Count   Count(%)
+0      0   4141  71.581677
+1      1   1644  28.418323 
+
+Test dataset
+   Value  Count   Count(%)
+0      0   4179  72.238548
+1      1   1606  27.761452 
+

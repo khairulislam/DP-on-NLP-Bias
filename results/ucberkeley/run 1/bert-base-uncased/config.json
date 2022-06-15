@@ -1,0 +1,12 @@
+{
+    "dataset_name": "ucberkeley-dlab/measuring-hate-speech",
+    "text_column": "text",
+    "id_column": "comment_id",
+    "raw_target_column": "hatespeech",
+    "target_column": "labels",
+    "test_size": 0.15,
+    "validation_size": 0.15,
+    "seed": 2022,
+    "max_seq_length": 128,
+    "model_name": "bert-base-uncased"
+}

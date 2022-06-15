@@ -1,0 +1,65 @@
+Creating output folder experiment/run 3/bert-base-uncased/epsilon 6.0
+cuda
+Total parameters count: 109483778
+Trainable parameters count: 7680002, percent 7.015
+Epoch 1 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:32.209485
+Epoch 1 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 1 | ɛ: [0.48484576526495204, 1.8774040006945965, 4.172015514912287] |Train loss: 1.113 | Train result: {'accuracy': 0.7223, 'f1': 0.0064, 'auc': 0.6841} |
+Validation loss: 1.116 | Validation result: {'accuracy': 0.7207, 'f1': 0.0074, 'auc': 0.7843} | 
+
+Loss improved from inf to -0.007. Saving model.
+
+Epoch 2 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:34.732519
+Epoch 2 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 2 | ɛ: [0.6247127675924247, 2.106512530083923, 4.520376077234296] |Train loss: 0.941 | Train result: {'accuracy': 0.7531, 'f1': 0.4045, 'auc': 0.7801} |
+Validation loss: 0.955 | Validation result: {'accuracy': 0.7765, 'f1': 0.5293, 'auc': 0.8012} | 
+
+Loss improved from -0.007 to -0.529. Saving model.
+
+Epoch 3 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:37.188925
+Epoch 3 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 3 | ɛ: [0.7408943087940256, 2.286433021022278, 4.781363574814638] |Train loss: 0.929 | Train result: {'accuracy': 0.776, 'f1': 0.5379, 'auc': 0.7996} |
+Validation loss: 1.007 | Validation result: {'accuracy': 0.7841, 'f1': 0.532, 'auc': 0.8121} | 
+
+Loss improved from -0.529 to -0.532. Saving model.
+
+Epoch 4 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:33.534138
+Epoch 4 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 4 | ɛ: [0.8457249550589758, 2.4416609243453715, 4.995192804980577] |Train loss: 0.936 | Train result: {'accuracy': 0.7806, 'f1': 0.5403, 'auc': 0.8016} |
+Validation loss: 1.020 | Validation result: {'accuracy': 0.7851, 'f1': 0.555, 'auc': 0.8145} | 
+
+Loss improved from -0.532 to -0.555. Saving model.
+
+Epoch 5 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:33.618528
+Epoch 5 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 5 | ɛ: [0.9425816625763097, 2.5855178930489657, 5.1966301671529225] |Train loss: 0.990 | Train result: {'accuracy': 0.7799, 'f1': 0.5464, 'auc': 0.7925} |
+Validation loss: 1.033 | Validation result: {'accuracy': 0.7895, 'f1': 0.5532, 'auc': 0.8043} | 
+Early stopping counter 1 of 3
+
+Epoch 6 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:35.366515
+Epoch 6 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 6 | ɛ: [1.03270711530832, 2.71751653414406, 5.372514799665998] |Train loss: 0.977 | Train result: {'accuracy': 0.7873, 'f1': 0.557, 'auc': 0.7924} |
+Validation loss: 1.038 | Validation result: {'accuracy': 0.7914, 'f1': 0.5412, 'auc': 0.8004} | 
+Epoch 00006: reducing learning rate of group 0 to 1.0000e-04.
+Early stopping counter 2 of 3
+
+Epoch 7 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:34.584945
+Epoch 7 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 7 | ɛ: [1.1198976673752088, 2.843166043473152, 5.548399432179073] |Train loss: 0.979 | Train result: {'accuracy': 0.7867, 'f1': 0.5416, 'auc': 0.7896} |
+Validation loss: 1.023 | Validation result: {'accuracy': 0.7917, 'f1': 0.5519, 'auc': 0.8024} | 
+Early stopping counter 3 of 3
+Early stopping..
+Loaded best model from epoch 4
+Epoch 4 (Train):   0%|          | 0/85 [00:00<?, ?it/s]
+Epoch 4 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch 4 (Test):   0%|          | 0/19 [00:00<?, ?it/s]
+At best epoch, train result {'accuracy': 0.7895, 'f1': 0.5674, 'auc': 0.8183} 
+validation result {'accuracy': 0.7851, 'f1': 0.555, 'auc': 0.8145} 
+test result {'accuracy': 0.7815, 'f1': 0.554, 'auc': 0.8094}

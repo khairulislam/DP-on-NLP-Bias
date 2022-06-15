@@ -1,5 +1,5 @@
 """
-python train.py -p "experiment/run 1/bert-base-uncased"
+python train.py -p "ucberkeley/experiment/run 1/bert-base-uncased"
 """
 
 import argparse

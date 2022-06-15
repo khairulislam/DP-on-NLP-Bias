@@ -1,0 +1,94 @@
+Epoch 1 (Train): 100%
+422/422 [01:30<00:00, 5.34it/s, f1=0.531, loss=0.451]
+Epoch 1 (Validation): 100%
+19/19 [00:12<00:00, 1.61it/s, f1=0.616, loss=0.423]
+Epoch: 1 | Train loss: 0.451 | Train result: {'accuracy': 0.7865, 'f1': 0.5309, 'auc': 0.8176} |
+Validation loss: 0.424 | Validation result: {'accuracy': 0.796, 'f1': 0.6159, 'auc': 0.8415} | 
+
+Loss improved from inf to -0.616. Saving model.
+
+Epoch 2 (Train): 100%
+422/422 [01:28<00:00, 5.63it/s, f1=0.59, loss=0.426]
+Epoch 2 (Validation): 100%
+19/19 [00:11<00:00, 1.58it/s, f1=0.589, loss=0.417]
+Epoch: 2 | Train loss: 0.426 | Train result: {'accuracy': 0.7999, 'f1': 0.5901, 'auc': 0.8423} |
+Validation loss: 0.417 | Validation result: {'accuracy': 0.8016, 'f1': 0.5885, 'auc': 0.8461} | 
+Early stopping counter 1 of 3
+
+Epoch 3 (Train): 100%
+422/422 [01:28<00:00, 5.67it/s, f1=0.617, loss=0.416]
+Epoch 3 (Validation): 100%
+19/19 [00:12<00:00, 1.61it/s, f1=0.618, loss=0.414]
+Epoch: 3 | Train loss: 0.416 | Train result: {'accuracy': 0.8081, 'f1': 0.6169, 'auc': 0.8513} |
+Validation loss: 0.414 | Validation result: {'accuracy': 0.8048, 'f1': 0.6179, 'auc': 0.851} | 
+
+Loss improved from -0.616 to -0.618. Saving model.
+
+Epoch 4 (Train): 100%
+422/422 [01:29<00:00, 5.54it/s, f1=0.621, loss=0.412]
+Epoch 4 (Validation): 100%
+19/19 [00:12<00:00, 1.61it/s, f1=0.626, loss=0.415]
+Epoch: 4 | Train loss: 0.412 | Train result: {'accuracy': 0.8096, 'f1': 0.6211, 'auc': 0.8547} |
+Validation loss: 0.415 | Validation result: {'accuracy': 0.7983, 'f1': 0.6258, 'auc': 0.848} | 
+
+Loss improved from -0.618 to -0.626. Saving model.
+
+Epoch 5 (Train): 100%
+422/422 [01:29<00:00, 5.48it/s, f1=0.627, loss=0.407]
+Epoch 5 (Validation): 100%
+19/19 [00:12<00:00, 1.60it/s, f1=0.646, loss=0.415]
+Epoch: 5 | Train loss: 0.407 | Train result: {'accuracy': 0.8113, 'f1': 0.6268, 'auc': 0.8581} |
+Validation loss: 0.415 | Validation result: {'accuracy': 0.8045, 'f1': 0.6465, 'auc': 0.848} | 
+
+Loss improved from -0.626 to -0.646. Saving model.
+
+Epoch 6 (Train): 100%
+422/422 [01:29<00:00, 5.50it/s, f1=0.632, loss=0.404]
+Epoch 6 (Validation): 100%
+19/19 [00:11<00:00, 1.52it/s, f1=0.64, loss=0.413]
+Epoch: 6 | Train loss: 0.404 | Train result: {'accuracy': 0.8116, 'f1': 0.6318, 'auc': 0.861} |
+Validation loss: 0.413 | Validation result: {'accuracy': 0.8017, 'f1': 0.6396, 'auc': 0.8502} | 
+Early stopping counter 1 of 3
+
+Epoch 7 (Train): 100%
+422/422 [01:31<00:00, 5.39it/s, f1=0.635, loss=0.403]
+Epoch 7 (Validation): 100%
+19/19 [00:11<00:00, 1.56it/s, f1=0.627, loss=0.411]
+Epoch: 7 | Train loss: 0.403 | Train result: {'accuracy': 0.8133, 'f1': 0.6353, 'auc': 0.8614} |
+Validation loss: 0.411 | Validation result: {'accuracy': 0.8074, 'f1': 0.6269, 'auc': 0.8509} | 
+Epoch 00007: reducing learning rate of group 0 to 1.0000e-04.
+Early stopping counter 2 of 3
+
+Epoch 8 (Train): 100%
+422/422 [01:33<00:00, 5.39it/s, f1=0.653, loss=0.389]
+Epoch 8 (Validation): 100%
+19/19 [00:13<00:00, 1.56it/s, f1=0.648, loss=0.418]
+Epoch: 8 | Train loss: 0.389 | Train result: {'accuracy': 0.8188, 'f1': 0.6532, 'auc': 0.8721} |
+Validation loss: 0.418 | Validation result: {'accuracy': 0.8033, 'f1': 0.6477, 'auc': 0.8508} | 
+
+Loss improved from -0.646 to -0.648. Saving model.
+
+Epoch 9 (Train): 100%
+422/422 [01:32<00:00, 5.42it/s, f1=0.662, loss=0.384]
+Epoch 9 (Validation): 100%
+19/19 [00:11<00:00, 1.55it/s, f1=0.644, loss=0.417]
+Epoch: 9 | Train loss: 0.384 | Train result: {'accuracy': 0.8229, 'f1': 0.6616, 'auc': 0.8759} |
+Validation loss: 0.417 | Validation result: {'accuracy': 0.8047, 'f1': 0.6442, 'auc': 0.8516} | 
+Early stopping counter 1 of 3
+
+Epoch 10 (Train): 100%
+422/422 [01:19<00:00, 5.60it/s, f1=0.659, loss=0.382]
+Epoch 10 (Validation): 100%
+19/19 [00:11<00:00, 1.59it/s, f1=0.643, loss=0.418]
+Epoch: 10 | Train loss: 0.382 | Train result: {'accuracy': 0.8222, 'f1': 0.6595, 'auc': 0.8774} |
+Validation loss: 0.418 | Validation result: {'accuracy': 0.8035, 'f1': 0.6428, 'auc': 0.8518} | 
+Epoch 00010: reducing learning rate of group 0 to 1.0000e-05.
+Early stopping counter 2 of 3
+
+Loaded best model from epoch 8
+Epoch 8 (Train): 100%
+422/422 [01:01<00:00, 6.95it/s, f1=0.683, loss=0.373]
+Epoch 8 (Validation): 100%
+19/19 [00:11<00:00, 1.59it/s, f1=0.648, loss=0.418]
+Epoch 8 (Test): 100%
+19/19 [00:11<00:00, 1.60it/s, f1=0.638, loss=0.461]

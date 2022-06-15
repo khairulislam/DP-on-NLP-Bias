@@ -1,7 +1,0 @@
-metrics,target_gender_men,target_gender_men_DP,target_gender_women,target_gender_women_DP,target_race_white,target_race_white_DP,target_race_black,target_race_black_DP,Total,Total_DP
-auc,0.823,0.768,0.817,0.767,0.792,0.729,0.88,0.839,0.851,0.798
-accuracy,0.806,0.766,0.752,0.724,0.795,0.757,0.815,0.771,0.806,0.784
-f1_score,0.577,0.495,0.607,0.552,0.538,0.396,0.785,0.713,0.624,0.555
-precision,0.667,0.565,0.63,0.589,0.643,0.553,0.778,0.766,0.677,0.647
-recall,0.508,0.441,0.586,0.519,0.463,0.309,0.791,0.666,0.578,0.486
-false positive rate,0.09,0.12,0.168,0.176,0.09,0.087,0.168,0.151,0.106,0.102
