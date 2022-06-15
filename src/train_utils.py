@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import f1_score, accuracy_score, roc_auc_score
 from transformers import AutoModelForSequenceClassification
-
+import pickle, random
 from time import process_time
 from datetime import timedelta
 
@@ -278,3 +278,44 @@ class ModelCheckPoint:
         print(f"\nLoss improved from {self.best_loss:.3f} to {current_loss:.3f}. Saving model.")
         self.best_loss = current_loss
         TrainUtil.save_model(model, optimizer, lr_scheduler, epoch, self.filepath)
+
+
+def dictionary(config) -> dict:
+    # exclude hidden variables
+    config_dict =config.__dict__.copy()
+    keys = list(config_dict.keys())
+    for key in keys:
+        if key.startswith('__'):
+            del config_dict[key]
+
+    return config_dict
+
+def seed_torch(seed=7):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+
+def get_tokenized(tokenizer_root):
+    with open(os.path.join(tokenizer_root, 'train.pkl'), 'rb') as input_file:
+        train_tokenized = pickle.load(input_file)
+        input_file.close()
+    
+    with open(os.path.join(tokenizer_root, 'validation.pkl'), 'rb') as input_file:
+        validation_tokenized = pickle.load(input_file)
+        input_file.close()
+        
+    with open(os.path.join(tokenizer_root, 'test.pkl'), 'rb') as input_file:
+        test_tokenized = pickle.load(input_file)
+        input_file.close()
+
+    return train_tokenized, validation_tokenized, test_tokenized
+
+# Check target column distribution
+def value_count(df, value):
+    counts = df[value].value_counts().reset_index()
+    counts.columns = ['Value', 'Count']
+    counts['Count(%)'] = counts['Count'] * 100 / counts['Count'].sum()
+    print(counts, '\n')

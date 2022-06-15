@@ -16,4 +16,4 @@ conda deactivate
 conda activate ml
 
 cd ~/Git/Data-Privacy-Project/src/ucberkeley/
-python train.py --path "experiment/run $SLURM_ARRAY_TASK_ID/bert-base-uncased"
+python ../train.py --path "experiment/run $SLURM_ARRAY_TASK_ID/bert-base-uncased"
