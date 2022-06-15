@@ -1,5 +1,5 @@
 """
-python private-train.py -p "experiment/run 1/bert-base-uncased"
+python private-train.py --path "experiment/run 1/bert-base-uncased" --epsilon 1.0
 """
 import argparse
 # need to install on kaggle or colab
@@ -53,7 +53,7 @@ def main():
     output_folder = os.path.join(args.path, f'epsilon {Config.target_epsilon}')
 
     if not os.path.exists(output_folder):
-        print(f'Creating output folder {args.path}')
+        print(f'Creating output folder {output_folder}')
         os.makedirs(output_folder, exist_ok=True)
     
     # tokenizer should have its own config.json

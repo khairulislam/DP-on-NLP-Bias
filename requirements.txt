@@ -9,3 +9,4 @@ tqdm
 sklearn
 imblearn
 transformers
+ipywidgets
