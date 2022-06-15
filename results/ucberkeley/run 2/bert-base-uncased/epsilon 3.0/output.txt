@@ -1,0 +1,95 @@
+Epoch 1 (Train):
+882/? [02:57<00:00, 5.56it/s, f1=0.0008, loss=1.16]
+Epoch 1 (Validation): 100%
+19/19 [00:23<00:00, 1.17it/s, f1=0, loss=1.21]
+Epoch: 1 | ɛ: [ 3.13  5.95 10.07] |Train loss: 1.162 | Train result: {'accuracy': 0.7226, 'f1': 0.0008, 'auc': 0.5978} |
+Validation loss: 1.209 | Validation result: {'accuracy': 0.7148, 'f1': 0.0, 'auc': 0.7557} | 
+
+Loss improved from inf to -0.000. Saving model.
+
+Epoch 2 (Train):
+887/? [02:58<00:00, 5.45it/s, f1=0.0098, loss=1.03]
+Epoch 2 (Validation): 100%
+19/19 [00:23<00:00, 1.19it/s, f1=0.041, loss=1.05]
+Epoch: 2 | ɛ: [ 3.16  5.98 10.1 ] |Train loss: 1.032 | Train result: {'accuracy': 0.7168, 'f1': 0.0098, 'auc': 0.7443} |
+Validation loss: 1.055 | Validation result: {'accuracy': 0.717, 'f1': 0.041, 'auc': 0.7876} | 
+
+Loss improved from -0.000 to -0.041. Saving model.
+
+Epoch 3 (Train):
+886/? [02:59<00:00, 5.50it/s, f1=0.341, loss=0.894]
+Epoch 3 (Validation): 100%
+19/19 [00:23<00:00, 1.16it/s, f1=0.457, loss=1.01]
+Epoch: 3 | ɛ: [ 3.19  6.01 10.14] |Train loss: 0.894 | Train result: {'accuracy': 0.7474, 'f1': 0.3408, 'auc': 0.7877} |
+Validation loss: 1.008 | Validation result: {'accuracy': 0.7663, 'f1': 0.4566, 'auc': 0.8024} | 
+
+Loss improved from -0.041 to -0.457. Saving model.
+
+Epoch 4 (Train):
+889/? [03:00<00:00, 5.47it/s, f1=0.47, loss=0.885]
+Epoch 4 (Validation): 100%
+19/19 [00:23<00:00, 1.19it/s, f1=0.462, loss=0.979]
+Epoch: 4 | ɛ: [ 3.21  6.04 10.17] |Train loss: 0.885 | Train result: {'accuracy': 0.7696, 'f1': 0.4698, 'auc': 0.7994} |
+Validation loss: 0.979 | Validation result: {'accuracy': 0.7699, 'f1': 0.4622, 'auc': 0.8117} | 
+
+Loss improved from -0.457 to -0.462. Saving model.
+
+Epoch 5 (Train):
+879/? [02:58<00:00, 5.50it/s, f1=0.5, loss=0.892]
+Epoch 5 (Validation): 100%
+19/19 [00:22<00:00, 1.19it/s, f1=0.527, loss=0.966]
+Epoch: 5 | ɛ: [ 3.24  6.07 10.2 ] |Train loss: 0.892 | Train result: {'accuracy': 0.7753, 'f1': 0.5004, 'auc': 0.8029} |
+Validation loss: 0.966 | Validation result: {'accuracy': 0.782, 'f1': 0.5275, 'auc': 0.8186} | 
+
+Loss improved from -0.462 to -0.527. Saving model.
+
+Epoch 6 (Train):
+890/? [03:00<00:00, 5.53it/s, f1=0.528, loss=0.895]
+Epoch 6 (Validation): 100%
+19/19 [00:23<00:00, 1.16it/s, f1=0.532, loss=0.926]
+Epoch: 6 | ɛ: [ 3.27  6.1  10.24] |Train loss: 0.895 | Train result: {'accuracy': 0.78, 'f1': 0.528, 'auc': 0.8054} |
+Validation loss: 0.926 | Validation result: {'accuracy': 0.7841, 'f1': 0.532, 'auc': 0.8201} | 
+
+Loss improved from -0.527 to -0.532. Saving model.
+
+Epoch 7 (Train):
+886/? [02:59<00:00, 5.38it/s, f1=0.546, loss=0.885]
+Epoch 7 (Validation): 100%
+19/19 [00:23<00:00, 1.19it/s, f1=0.547, loss=0.934]
+Epoch: 7 | ɛ: [ 3.29  6.13 10.27] |Train loss: 0.885 | Train result: {'accuracy': 0.7848, 'f1': 0.5458, 'auc': 0.8156} |
+Validation loss: 0.934 | Validation result: {'accuracy': 0.787, 'f1': 0.5474, 'auc': 0.8244} | 
+
+Loss improved from -0.532 to -0.547. Saving model.
+
+Epoch 8 (Train):
+887/? [03:00<00:00, 5.47it/s, f1=0.549, loss=0.901]
+Epoch 8 (Validation): 100%
+19/19 [00:23<00:00, 1.18it/s, f1=0.549, loss=0.934]
+Epoch: 8 | ɛ: [ 3.32  6.16 10.31] |Train loss: 0.901 | Train result: {'accuracy': 0.784, 'f1': 0.5486, 'auc': 0.8102} |
+Validation loss: 0.934 | Validation result: {'accuracy': 0.7882, 'f1': 0.5495, 'auc': 0.8223} | 
+
+Loss improved from -0.547 to -0.549. Saving model.
+
+Epoch 9 (Train):
+896/? [03:02<00:00, 5.47it/s, f1=0.573, loss=0.884]
+Epoch 9 (Validation): 100%
+19/19 [00:22<00:00, 1.18it/s, f1=0.568, loss=0.903]
+Epoch: 9 | ɛ: [ 3.35  6.19 10.34] |Train loss: 0.884 | Train result: {'accuracy': 0.791, 'f1': 0.5729, 'auc': 0.8244} |
+Validation loss: 0.903 | Validation result: {'accuracy': 0.7922, 'f1': 0.5682, 'auc': 0.8248} | 
+
+Loss improved from -0.549 to -0.568. Saving model.
+
+Epoch 10 (Train):
+891/? [02:37<00:00, 5.39it/s, f1=0.555, loss=0.892]
+Epoch 10 (Validation): 100%
+19/19 [00:21<00:00, 1.19it/s, f1=0.575, loss=0.919]
+Epoch: 10 | ɛ: [ 3.37  6.22 10.38] |Train loss: 0.892 | Train result: {'accuracy': 0.7927, 'f1': 0.5553, 'auc': 0.817} |
+Validation loss: 0.919 | Validation result: {'accuracy': 0.7972, 'f1': 0.5752, 'auc': 0.8284} | 
+
+Loss improved from -0.568 to -0.575. Saving model.
+
+Loaded best model from epoch 10
+Epoch 10 (Train): 100%
+85/85 [01:38<00:00, 1.04it/s, f1=0.589, loss=0.905]
+Epoch 10 (Test): 100%
+19/19 [00:20<00:00, 1.19it/s, f1=0.574, loss=1.03]

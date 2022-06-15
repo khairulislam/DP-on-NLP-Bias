@@ -1,0 +1,8 @@
+fairness_metrics,gender,gender_DP,race,race_DP
+demographic parity,0.483,0.688,0.527,0.551
+Equality of Opportunity (w.r.t y = 1),0.928,0.993,0.679,0.604
+Equality of Opportunity (w.r.t y = 0),0.925,0.976,0.934,0.935
+Equality of Odds,0.927,0.985,0.806,0.769
+unprotected-accuracy,0.753,0.729,0.811,0.79
+protected-accuracy,0.803,0.776,0.787,0.768
+accuracy,0.778,0.753,0.799,0.779

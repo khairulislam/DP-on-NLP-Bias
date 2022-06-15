@@ -1,0 +1,88 @@
+Epoch 1 (Train):
+1059/? [02:02<00:00, 7.74it/s, f1=0.0077, loss=0.941]
+Epoch 1 (Validation): 100%
+91/91 [00:13<00:00, 7.24it/s, f1=0, loss=0.96]
+Epoch: 1 | ɛ: [0.19 1.   2.37] |Train loss: 0.941 | Train result: {'accuracy': 0.7624, 'f1': 0.0077, 'auc': 0.657} |
+Validation loss: 0.960 | Validation result: {'accuracy': 0.7625, 'f1': 0.0, 'auc': 0.7612} | 
+
+Loss improved from inf to -0.000. Saving model.
+
+Epoch 2 (Train):
+1030/? [02:01<00:00, 8.00it/s, f1=0.0019, loss=0.923]
+Epoch 2 (Validation): 100%
+91/91 [00:13<00:00, 7.25it/s, f1=0.0044, loss=0.979]
+Epoch: 2 | ɛ: [0.24 1.08 2.48] |Train loss: 0.923 | Train result: {'accuracy': 0.7661, 'f1': 0.0019, 'auc': 0.7708} |
+Validation loss: 0.979 | Validation result: {'accuracy': 0.7628, 'f1': 0.0044, 'auc': 0.8014} | 
+
+Loss improved from -0.000 to -0.004. Saving model.
+
+Epoch 3 (Train):
+1030/? [02:00<00:00, 7.40it/s, f1=0.0277, loss=0.886]
+Epoch 3 (Validation): 100%
+91/91 [00:13<00:00, 7.26it/s, f1=0.0905, loss=0.933]
+Epoch: 3 | ɛ: [0.29 1.15 2.57] |Train loss: 0.886 | Train result: {'accuracy': 0.77, 'f1': 0.0277, 'auc': 0.7927} |
+Validation loss: 0.933 | Validation result: {'accuracy': 0.7706, 'f1': 0.0905, 'auc': 0.8062} | 
+
+Loss improved from -0.004 to -0.090. Saving model.
+
+Epoch 4 (Train):
+1047/? [02:02<00:00, 8.88it/s, f1=0.272, loss=0.823]
+Epoch 4 (Validation): 100%
+91/91 [00:13<00:00, 7.30it/s, f1=0.43, loss=0.792]
+Epoch: 4 | ɛ: [0.33 1.21 2.66] |Train loss: 0.823 | Train result: {'accuracy': 0.787, 'f1': 0.2721, 'auc': 0.8063} |
+Validation loss: 0.792 | Validation result: {'accuracy': 0.8003, 'f1': 0.4296, 'auc': 0.8234} | 
+
+Loss improved from -0.090 to -0.430. Saving model.
+
+Epoch 5 (Train):
+1033/? [02:01<00:00, 8.41it/s, f1=0.516, loss=0.78]
+Epoch 5 (Validation): 100%
+91/91 [00:14<00:00, 7.25it/s, f1=0.55, loss=0.861]
+Epoch: 5 | ɛ: [0.37 1.27 2.73] |Train loss: 0.780 | Train result: {'accuracy': 0.8108, 'f1': 0.5157, 'auc': 0.8217} |
+Validation loss: 0.861 | Validation result: {'accuracy': 0.8178, 'f1': 0.55, 'auc': 0.8342} | 
+
+Loss improved from -0.430 to -0.550. Saving model.
+
+Epoch 6 (Train):
+1040/? [02:02<00:00, 8.93it/s, f1=0.535, loss=0.787]
+Epoch 6 (Validation): 100%
+91/91 [00:13<00:00, 7.29it/s, f1=0.551, loss=0.845]
+Epoch: 6 | ɛ: [0.41 1.32 2.8 ] |Train loss: 0.787 | Train result: {'accuracy': 0.8184, 'f1': 0.5353, 'auc': 0.8302} |
+Validation loss: 0.845 | Validation result: {'accuracy': 0.8188, 'f1': 0.5506, 'auc': 0.8359} | 
+
+Loss improved from -0.550 to -0.551. Saving model.
+
+Epoch 7 (Train):
+1046/? [02:01<00:00, 8.16it/s, f1=0.531, loss=0.821]
+Epoch 7 (Validation): 100%
+91/91 [00:13<00:00, 7.24it/s, f1=0.519, loss=0.897]
+Epoch: 7 | ɛ: [0.45 1.37 2.86] |Train loss: 0.820 | Train result: {'accuracy': 0.82, 'f1': 0.5311, 'auc': 0.8274} |
+Validation loss: 0.898 | Validation result: {'accuracy': 0.818, 'f1': 0.519, 'auc': 0.8343} | 
+Early stopping counter 1 of 3
+
+Epoch 8 (Train):
+1020/? [01:59<00:00, 9.09it/s, f1=0.518, loss=0.829]
+Epoch 8 (Validation): 100%
+91/91 [00:13<00:00, 7.23it/s, f1=0.517, loss=0.906]
+Epoch: 8 | ɛ: [0.49 1.42 2.93] |Train loss: 0.829 | Train result: {'accuracy': 0.8236, 'f1': 0.5179, 'auc': 0.8237} |
+Validation loss: 0.906 | Validation result: {'accuracy': 0.823, 'f1': 0.517, 'auc': 0.8372} | 
+Epoch 00008: reducing learning rate of group 0 to 1.0000e-04.
+Early stopping counter 2 of 3
+
+Epoch 9 (Train):
+1032/? [06:40<00:00, 9.73it/s, f1=0.528, loss=0.821]
+Epoch 9 (Validation): 100%
+91/91 [04:53<00:00, 7.26it/s, f1=0.537, loss=0.902]
+Epoch: 9 | ɛ: [0.52 1.47 2.99] |Train loss: 0.821 | Train result: {'accuracy': 0.8249, 'f1': 0.5281, 'auc': 0.8284} |
+Validation loss: 0.902 | Validation result: {'accuracy': 0.8247, 'f1': 0.5374, 'auc': 0.839} | 
+Early stopping counter 3 of 3
+Early stopping..
+
+
+Loaded best model from epoch 6
+Epoch 6 (Train): 100%
+421/421 [04:40<00:00, 7.25it/s, f1=0.566, loss=0.794]
+Epoch 6 (Validation): 100%
+91/91 [03:40<00:00, 6.64it/s, f1=0.551, loss=0.845]
+Epoch 6 (Test): 100%
+91/91 [03:27<00:00, 7.24it/s, f1=0.554, loss=0.835]

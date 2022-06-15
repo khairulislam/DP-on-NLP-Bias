@@ -1,0 +1,5 @@
+Identity,0 (train),1 (train),0 (test),1 (test)
+target_gender_women,4847,2304,1038,505
+target_gender_men,2359,811,502,177
+target_race_black,2136,1557,471,350
+target_race_white,1689,634,390,136

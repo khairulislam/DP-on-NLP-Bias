@@ -1,0 +1,71 @@
+cuda
+Total parameters count: 109483778
+Trainable parameters count: 7680002, percent 7.015
+Epoch 1 (Train):   0%|          | 0/422 [00:00<?, ?it/s]
+Elapsed time 0:02:03.164782
+Epoch 1 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 1 | Train loss: 0.453 | Train result: {'accuracy': 0.7839, 'f1': 0.5873, 'auc': 0.8223} |
+Validation loss: 0.439 | Validation result: {'accuracy': 0.7993, 'f1': 0.5406, 'auc': 0.8496} | 
+
+Loss improved from inf to -0.541. Saving model.
+
+Epoch 2 (Train):   0%|          | 0/422 [00:00<?, ?it/s]
+Elapsed time 0:02:04.022670
+Epoch 2 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 2 | Train loss: 0.420 | Train result: {'accuracy': 0.8029, 'f1': 0.6198, 'auc': 0.8502} |
+Validation loss: 0.431 | Validation result: {'accuracy': 0.7983, 'f1': 0.5673, 'auc': 0.8484} | 
+
+Loss improved from -0.541 to -0.567. Saving model.
+
+Epoch 3 (Train):   0%|          | 0/422 [00:00<?, ?it/s]
+Elapsed time 0:02:03.651855
+Epoch 3 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 3 | Train loss: 0.414 | Train result: {'accuracy': 0.8067, 'f1': 0.6298, 'auc': 0.8551} |
+Validation loss: 0.439 | Validation result: {'accuracy': 0.7905, 'f1': 0.4847, 'auc': 0.846} | 
+Early stopping counter 1 of 3
+
+Epoch 4 (Train):   0%|          | 0/422 [00:00<?, ?it/s]
+Elapsed time 0:02:04.127031
+Epoch 4 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 4 | Train loss: 0.409 | Train result: {'accuracy': 0.8073, 'f1': 0.6253, 'auc': 0.8582} |
+Validation loss: 0.438 | Validation result: {'accuracy': 0.8002, 'f1': 0.5544, 'auc': 0.851} | 
+Epoch 00004: reducing learning rate of group 0 to 1.0000e-04.
+Early stopping counter 2 of 3
+
+Epoch 5 (Train):   0%|          | 0/422 [00:00<?, ?it/s]
+Elapsed time 0:02:04.167469
+Epoch 5 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 5 | Train loss: 0.391 | Train result: {'accuracy': 0.8174, 'f1': 0.6442, 'auc': 0.872} |
+Validation loss: 0.426 | Validation result: {'accuracy': 0.81, 'f1': 0.6474, 'auc': 0.8532} | 
+
+Loss improved from -0.567 to -0.647. Saving model.
+
+Epoch 6 (Train):   0%|          | 0/422 [00:00<?, ?it/s]
+Elapsed time 0:02:03.821964
+Epoch 6 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 6 | Train loss: 0.387 | Train result: {'accuracy': 0.8189, 'f1': 0.6512, 'auc': 0.8749} |
+Validation loss: 0.429 | Validation result: {'accuracy': 0.8119, 'f1': 0.6465, 'auc': 0.8535} | 
+Early stopping counter 1 of 3
+
+Epoch 7 (Train):   0%|          | 0/422 [00:00<?, ?it/s]
+Elapsed time 0:02:04.014100
+Epoch 7 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 7 | Train loss: 0.385 | Train result: {'accuracy': 0.819, 'f1': 0.6513, 'auc': 0.8763} |
+Validation loss: 0.427 | Validation result: {'accuracy': 0.8119, 'f1': 0.6437, 'auc': 0.854} | 
+Epoch 00007: reducing learning rate of group 0 to 1.0000e-05.
+Early stopping counter 2 of 3
+
+Epoch 8 (Train):   0%|          | 0/422 [00:00<?, ?it/s]
+Elapsed time 0:02:05.088510
+Epoch 8 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 8 | Train loss: 0.379 | Train result: {'accuracy': 0.8225, 'f1': 0.6601, 'auc': 0.8806} |
+Validation loss: 0.428 | Validation result: {'accuracy': 0.8124, 'f1': 0.6432, 'auc': 0.8539} | 
+Early stopping counter 3 of 3
+Early stopping..
+Loaded best model from epoch 5
+Epoch 5 (Train):   0%|          | 0/422 [00:00<?, ?it/s]
+Epoch 5 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch 5 (Test):   0%|          | 0/19 [00:00<?, ?it/s]
+At best epoch, train result {'accuracy': 0.8266, 'f1': 0.6746, 'auc': 0.8853}
+validation result {'accuracy': 0.81, 'f1': 0.6474, 'auc': 0.8532}
+, test result {'accuracy': 0.8085, 'f1': 0.6353, 'auc': 0.8558}

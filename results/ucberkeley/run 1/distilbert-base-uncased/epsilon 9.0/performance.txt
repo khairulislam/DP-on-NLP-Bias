@@ -1,0 +1,87 @@
+Epoch 1 (Train):
+1057/? [02:02<00:00, 9.53it/s, f1=0.001, loss=1.03]
+Epoch 1 (Validation): 100%
+19/19 [00:12<00:00, 1.60it/s, f1=0.0169, loss=0.99]
+Epoch: 1 | ɛ: [0.87 2.78 5.85] |Train loss: 1.031 | Train result: {'accuracy': 0.7157, 'f1': 0.001, 'auc': 0.683} |
+Validation loss: 0.990 | Validation result: {'accuracy': 0.7179, 'f1': 0.0169, 'auc': 0.7828} | 
+
+Loss improved from inf to -0.017. Saving model.
+
+Epoch 2 (Train):
+1037/? [02:01<00:00, 8.78it/s, f1=0.32, loss=0.89]
+Epoch 2 (Validation): 100%
+19/19 [00:12<00:00, 1.60it/s, f1=0.468, loss=0.982]
+Epoch: 2 | ɛ: [1.12 3.17 6.46] |Train loss: 0.890 | Train result: {'accuracy': 0.7482, 'f1': 0.3204, 'auc': 0.7834} |
+Validation loss: 0.982 | Validation result: {'accuracy': 0.7615, 'f1': 0.4684, 'auc': 0.8018} | 
+
+Loss improved from -0.017 to -0.468. Saving model.
+
+Epoch 3 (Train):
+1024/? [02:00<00:00, 9.50it/s, f1=0.514, loss=0.895]
+Epoch 3 (Validation): 100%
+19/19 [00:12<00:00, 1.60it/s, f1=0.509, loss=0.982]
+Epoch: 3 | ɛ: [1.32 3.48 6.91] |Train loss: 0.895 | Train result: {'accuracy': 0.7748, 'f1': 0.5144, 'auc': 0.8009} |
+Validation loss: 0.982 | Validation result: {'accuracy': 0.7751, 'f1': 0.5092, 'auc': 0.8133} | 
+
+Loss improved from -0.468 to -0.509. Saving model.
+
+Epoch 4 (Train):
+1013/? [01:59<00:00, 8.82it/s, f1=0.526, loss=0.919]
+Epoch 4 (Validation): 100%
+19/19 [00:12<00:00, 1.59it/s, f1=0.532, loss=1.09]
+Epoch: 4 | ɛ: [1.5  3.76 7.3 ] |Train loss: 0.919 | Train result: {'accuracy': 0.7812, 'f1': 0.5258, 'auc': 0.8032} |
+Validation loss: 1.088 | Validation result: {'accuracy': 0.7874, 'f1': 0.532, 'auc': 0.8218} | 
+
+Loss improved from -0.509 to -0.532. Saving model.
+
+Epoch 5 (Train):
+1052/? [02:03<00:00, 8.46it/s, f1=0.576, loss=0.931]
+Epoch 5 (Validation): 100%
+19/19 [00:12<00:00, 1.56it/s, f1=0.58, loss=1.03]
+Epoch: 5 | ɛ: [1.66 4.   7.63] |Train loss: 0.931 | Train result: {'accuracy': 0.7893, 'f1': 0.5763, 'auc': 0.8148} |
+Validation loss: 1.028 | Validation result: {'accuracy': 0.7933, 'f1': 0.5795, 'auc': 0.8245} | 
+
+Loss improved from -0.532 to -0.580. Saving model.
+
+Epoch 6 (Train):
+1021/? [02:00<00:00, 8.79it/s, f1=0.586, loss=0.9]
+Epoch 6 (Validation): 100%
+19/19 [00:12<00:00, 1.60it/s, f1=0.596, loss=0.956]
+Epoch: 6 | ɛ: [1.82 4.23 7.95] |Train loss: 0.900 | Train result: {'accuracy': 0.7972, 'f1': 0.5864, 'auc': 0.818} |
+Validation loss: 0.956 | Validation result: {'accuracy': 0.7889, 'f1': 0.5956, 'auc': 0.824} | 
+
+Loss improved from -0.580 to -0.596. Saving model.
+
+Epoch 7 (Train):
+1041/? [02:00<00:00, 7.97it/s, f1=0.57, loss=0.945]
+Epoch 7 (Validation): 100%
+19/19 [00:11<00:00, 1.61it/s, f1=0.572, loss=0.978]
+Epoch: 7 | ɛ: [1.96 4.43 8.23] |Train loss: 0.945 | Train result: {'accuracy': 0.7909, 'f1': 0.5697, 'auc': 0.8109} |
+Validation loss: 0.978 | Validation result: {'accuracy': 0.7924, 'f1': 0.5721, 'auc': 0.8226} | 
+Early stopping counter 1 of 3
+
+Epoch 8 (Train):
+1050/? [02:01<00:00, 8.60it/s, f1=0.571, loss=0.964]
+Epoch 8 (Validation): 100%
+19/19 [00:11<00:00, 1.59it/s, f1=0.562, loss=1.14]
+Epoch: 8 | ɛ: [2.1  4.63 8.51] |Train loss: 0.964 | Train result: {'accuracy': 0.7922, 'f1': 0.5711, 'auc': 0.8007} |
+Validation loss: 1.136 | Validation result: {'accuracy': 0.7955, 'f1': 0.5617, 'auc': 0.8108} | 
+Epoch 00008: reducing learning rate of group 0 to 1.0000e-04.
+Early stopping counter 2 of 3
+
+Epoch 9 (Train):
+1047/? [01:49<00:00, 9.53it/s, f1=0.587, loss=0.932]
+Epoch 9 (Validation): 100%
+19/19 [00:11<00:00, 1.61it/s, f1=0.585, loss=1.09]
+Epoch: 9 | ɛ: [2.23 4.83 8.77] |Train loss: 0.932 | Train result: {'accuracy': 0.7955, 'f1': 0.5869, 'auc': 0.8111} |
+Validation loss: 1.086 | Validation result: {'accuracy': 0.7971, 'f1': 0.5852, 'auc': 0.8153} | 
+Early stopping counter 3 of 3
+Early stopping..
+
+Loaded best model from epoch 6
+Epoch 6 (Train): 100%
+85/85 [00:53<00:00, 1.93it/s, f1=0.609, loss=0.92]
+Epoch 6 (Validation): 100%
+19/19 [00:11<00:00, 1.61it/s, f1=0.596, loss=0.956]
+Epoch 6 (Test): 100%
+19/19 [00:11<00:00, 1.61it/s, f1=0.601, loss=0.953]
