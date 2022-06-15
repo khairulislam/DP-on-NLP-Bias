@@ -6,7 +6,9 @@ python preprocess.py --seed 888 --path "experiment" --run 3
 import pandas as pd
 import argparse
 from sklearn.model_selection import train_test_split
-from numpy import where
+# need to install on kaggle or colab
+# !pip install datasets
+import datasets
 import json, os, sys
 
 sys.path.append('..')
@@ -79,10 +81,10 @@ def main():
 
     df.loc[:, text_column] = df[text_column].astype(str)
     df[text_column].fillna('', inplace=True) 
-    df[target_column] = where(df[Config.raw_target_column]>=0.5, 1, 0)
+    df[target_column] = df[Config.raw_target_column]>=0.5
 
     id_column = Config.id_column
-    identities = ['male', 'female', 'transgender', 'white', 'black', 'asian']
+    identities = ['male', 'female', 'white', 'black']
     selected_columns = [id_column, text_column, target_column, 'split'] + identities
     df = df[selected_columns]
 
