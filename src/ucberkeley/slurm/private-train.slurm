@@ -15,5 +15,4 @@ module load cuda-toolkit cudnn anaconda3
 conda deactivate
 conda activate ml
 
-cd ~/Git/Data-Privacy-Project/src/ucberkeley/
-python ../private-train.py --path "experiment/run 1/bert-base-uncased" --epsilon $SLURM_ARRAY_TASK_ID
+python ../../private-train.py --path "../experiment/run 1/bert-base-uncased" --epsilon $SLURM_ARRAY_TASK_ID
