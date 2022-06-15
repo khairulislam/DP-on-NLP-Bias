@@ -3,7 +3,6 @@ python preprocess.py --seed 2022 --path "experiment" --run 1
 python preprocess.py --seed 42 --path "experiment" --run 2
 python preprocess.py --seed 888 --path "experiment" --run 3
 """
-import pandas as pd
 import argparse
 from sklearn.model_selection import train_test_split
 # need to install on kaggle or colab
@@ -11,7 +10,8 @@ from sklearn.model_selection import train_test_split
 import datasets
 import json, os, sys
 
-from utils import dictionary
+sys.path.append('..')
+from train_utils import dictionary, value_count
 from dataclasses import dataclass
 
 @dataclass
@@ -28,13 +28,6 @@ class Config:
     
     test_size = 0.15
     validation_size = 0.15
-
-# Check target column distribution
-def value_count(df, value):
-    counts = df[value].value_counts().reset_index()
-    counts.columns = ['Value', 'Count']
-    counts['Count(%)'] = counts['Count'] * 100 / counts['Count'].sum()
-    print(counts, '\n')
 
 def get_arguments():
     parser = argparse.ArgumentParser(
@@ -64,7 +57,7 @@ def main():
     experiment_folder = os.path.join(args.path, f'run {args.run}')
 
     if not os.path.exists(experiment_folder):
-        print(f'Creating output folder {args.path}')
+        print(f'Creating output folder {experiment_folder}')
         os.makedirs(experiment_folder, exist_ok=True)
 
     original_stdout = sys.stdout

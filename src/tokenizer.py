@@ -1,23 +1,18 @@
 """
-python tokenizer.py --model "bert-base-uncased" --path "experiment/run 1"
-python tokenizer.py --model "bert-base-uncased" --path "experiment/run 2"
-python tokenizer.py --model "bert-base-uncased" --path "experiment/run 3"
-
-python tokenizer.py --model "distilbert-base-uncased" --path "experiment/run 1"
-python tokenizer.py --model "distilbert-base-uncased" --path "experiment/run 2"
-python tokenizer.py --model "distilbert-base-uncased" --path "experiment/run 3"
+python tokenizer.py --model "bert-base-uncased" --path "ucberkeley/experiment/run 1"
+python tokenizer.py --model "distilbert-base-uncased" --path "jigsaw/experiment/run 1"
 """
+from train_utils import dictionary
+import argparse, os, pickle
 import pandas as pd
-import argparse
 # need to install on kaggle or colab
 # !pip install datasets
-import datasets, pickle
+import datasets
 # need to install on google colab
 # pip install transformers
 from transformers import AutoTokenizer
-import json, os
+import json
 
-from utils import dictionary
 from dataclasses import dataclass
 
 @dataclass
@@ -25,7 +20,7 @@ class Config:
     max_seq_length = 128
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description='Tokenize ucberkeley', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(description='Tokenize dataset', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument(
         '-m', '--model',help='Model whose tokenizer and pretrained version will be used', 
         type=str, default='bert-base-uncased'
@@ -64,6 +59,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(
         Config.model_name,
         do_lower_case=True,
+        is_split_into_words=True
     )
     
     def tokenize_function(examples):
@@ -71,6 +67,7 @@ def main():
 
     def process(df, split='train'):
         df = df[final_columns]
+        df.loc[:, text_column] = df[text_column].astype(str).values
 
         # create dataset from pandas dataframe
         dataset = datasets.Dataset.from_pandas(df)
