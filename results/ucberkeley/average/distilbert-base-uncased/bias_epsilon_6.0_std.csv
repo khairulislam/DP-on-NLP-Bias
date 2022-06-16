@@ -1,0 +1,8 @@
+fairness_metrics,gender,race
+DP,0.054,0.08
+EqOdd,0.027,0.091
+EqOpp0,0.015,0.023
+EqOpp1,0.058,0.157
+accuracy,0.023,0.007
+p-accuracy,0.044,0.02
+up-accuracy,0.005,0.006
