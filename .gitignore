@@ -5,8 +5,6 @@ __pycache__/
 
 # folders that doesn't need to be tracked
 data/
-models/
-dp models/
 experiment/
 # C extensions
 *.so
