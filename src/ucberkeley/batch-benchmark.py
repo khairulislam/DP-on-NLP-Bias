@@ -12,7 +12,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_colwidth', None)
 
 dataset_name = 'ucberkeley'
-model_name = 'bert-base-uncased'
+model_name = 'distilbert-base-uncased'
 text_column = 'text'
 raw_id_column = 'comment_id'
 

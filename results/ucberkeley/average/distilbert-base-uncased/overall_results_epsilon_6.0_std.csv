@@ -1,0 +1,10 @@
+metrics,target_gender_men,target_gender_women,target_race_white,target_race_black,Total
+accuracy,0.044,0.005,0.02,0.006,0.019
+auc,0.059,0.024,0.01,0.022,0.009
+bnsp_auc,0.04,0.007,0.018,0.012,
+bpsn_auc,0.026,0.019,0.007,0.023,
+f1_score,0.034,0.061,0.137,0.014,0.016
+false positive rate,0.034,0.024,0.022,0.008,0.022
+precision,0.079,0.037,0.03,0.005,0.028
+recall,0.049,0.079,0.144,0.026,0.032
+size,336.595,766.432,250.807,406.276,2839.409
