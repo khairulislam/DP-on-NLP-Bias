@@ -1,5 +1,5 @@
 """
-python private-train.py --path "experiment/run 1/bert-base-uncased" --epsilon 1.0
+python private_train.py --path "experiment/run 1/bert-base-uncased" --epsilon 1.0
 """
 import argparse
 # need to install on kaggle or colab

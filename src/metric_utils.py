@@ -7,7 +7,7 @@ probability_column = 'probs'
 target_column = 'labels'
 id_column = 'id' # result csv files always has id in this same column. can be different in train or test csv files
 
-def get_overall_results(group_map, result, dp_result):
+def get_overall_results(group_map, result):
     overall_results = {
         'metrics': ['size', 'auc', 'accuracy', 'f1_score', 
         'precision', 'recall', 'false positive rate',
@@ -23,16 +23,12 @@ def get_overall_results(group_map, result, dp_result):
         unprivileged_group_name = ','.join(unprivileged_group)
 
         overall_results[privileged_group_name] = calculate_metrics(result, privileged_group)
-        overall_results[privileged_group_name + '_DP'] = calculate_metrics(dp_result, privileged_group)
-
         overall_results[unprivileged_group_name] = calculate_metrics(result, unprivileged_group)
-        overall_results[unprivileged_group_name + '_DP'] = calculate_metrics(dp_result, unprivileged_group)
 
     overall_results['Total'] = calculate_metrics(result, [])
-    overall_results['Total_DP'] = calculate_metrics(dp_result, [])
 
     overall_results = pd.DataFrame(overall_results) 
-    overall_results.columns = [col.replace('target_', '') for col in overall_results.columns]
+    # overall_results.columns = [col.replace('target_', '') for col in overall_results.columns]
     return overall_results
 
 def get_identity_count(train_df, test_df, identities):
@@ -116,6 +112,22 @@ def calculate_sensitive_accuracy(df_privileged, df_unprivileged):
 
     accuracy = (accuracy_privileged + accuracy_unprivileged) / 2
     return accuracy_unprivileged, accuracy_privileged, accuracy
+
+def get_all_bias(group_map, df):
+    bias_results = {
+        'fairness_metrics': ['DP', 'EqOpp1',
+        'EqOpp0', 'EqOdd', 'up-accuracy',
+        'p-accuracy', 'accuracy']
+        }
+
+    for group_key in group_map.keys():
+        subgroup_map = group_map[group_key]
+        privileged_group = subgroup_map['privileged']
+        unprivileged_group = subgroup_map['unprivileged']
+
+        bias_results[group_key] = calculate_bias(df, privileged_group, unprivileged_group)
+
+    return pd.DataFrame(bias_results) 
 
 def calculate_bias(df, privileged_group, unprivileged_group):
     df_privileged = df[(df[privileged_group]).any(axis=1)]
