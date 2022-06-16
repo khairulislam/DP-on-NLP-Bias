@@ -182,14 +182,14 @@ def compute_bpsn_auc(df, subgroup, label):
     """Computes the AUC of the within-subgroup negative examples and the background positive examples."""
     subgroup_negative_examples = df[(df[subgroup]).any(axis=1) & (~df[label])]
     non_subgroup_positive_examples = df[(~df[subgroup]).all(axis=1) & (df[label])]
-    examples = subgroup_negative_examples.append(non_subgroup_positive_examples)
+    examples = pd.concat([subgroup_negative_examples, non_subgroup_positive_examples])# subgroup_negative_examples.append(non_subgroup_positive_examples)
     return compute_auc(examples[label], examples[probability_column])
 
 def compute_bnsp_auc(df, subgroup, label):
     """Computes the AUC of the within-subgroup positive examples and the background negative examples."""
     subgroup_positive_examples = df[(df[subgroup]).any(axis=1) & (df[label])]
     non_subgroup_negative_examples = df[(~df[subgroup]).all(axis=1) & (~df[label])]
-    examples = subgroup_positive_examples.append(non_subgroup_negative_examples)
+    examples = pd.concat([subgroup_positive_examples, non_subgroup_negative_examples]) # subgroup_positive_examples.append(non_subgroup_negative_examples)
     return compute_auc(examples[label], examples[probability_column])
 
 def calculate_overall_auc(df):
