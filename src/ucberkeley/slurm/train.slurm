@@ -15,11 +15,4 @@ module load cuda-toolkit cudnn anaconda3
 conda deactivate
 conda activate ml
 
-<<<<<<< HEAD
-EXPERIMENT = "../experiment"
-MODEL = "bert-base-uncased"
-python ../../train.py --path "$EXPERIMENT/run $SLURM_ARRAY_TASK_ID/$MODEL"
-=======
-cd ~/Git/Data-Privacy-Project/src/ucberkeley/
-python ../train.py --path "experiment/run $SLURM_ARRAY_TASK_ID/bert-base-uncased"
->>>>>>> main
+python ../../train.py --path "..experiment/run 1/bert-base-uncased"
