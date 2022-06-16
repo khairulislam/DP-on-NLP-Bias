@@ -24,6 +24,9 @@ for group_key in group_map.keys():
 dataset_name = 'jigsaw'
 model_name = 'bert-base-uncased'
 
+test_csv_filepath = os.path.join(f'../../results/{dataset_name}', 'test.csv')
+test_df = pd.read_csv(test_csv_filepath)
+test_df.fillna(0, inplace=True)
 
 for run in range(1, 4):
     run_folder = f'../../results/{dataset_name}/run {run}'
@@ -35,10 +38,6 @@ for run in range(1, 4):
     result = result[result['split']=='test']
     # drop split column
     result.drop(columns=['split'], inplace=True)
-
-    test_csv_filepath = os.path.join(run_folder, 'test.csv')
-    test_df = pd.read_csv(test_csv_filepath)
-    test_df.fillna(0, inplace=True)
 
     extra_columns = [col for col in test_df.columns if col in result.columns and col!=id_column]
 
