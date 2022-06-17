@@ -1,5 +1,4 @@
 metrics,target_gender_men,target_gender_women,target_race_white,target_race_black,Total
-size,679.0,1543.0,526.0,821.0,5785.0
 auc,0.823,0.817,0.792,0.88,0.851
 accuracy,0.806,0.752,0.795,0.815,0.806
 f1_score,0.577,0.607,0.538,0.785,0.624

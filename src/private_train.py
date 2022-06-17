@@ -48,6 +48,7 @@ def main():
     Config.target_epsilon = args.epsilon
 
     output_folder = os.path.join(args.path, f'epsilon {Config.target_epsilon}')
+    print(f'Output folder {output_folder}')
 
     if not os.path.exists(output_folder):
         print(f'Creating output folder {output_folder}')

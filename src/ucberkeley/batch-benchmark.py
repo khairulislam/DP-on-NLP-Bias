@@ -66,7 +66,7 @@ for run in range(1, 4):
     overall_results = get_overall_results(group_map, result)
     overall_results.round(3).to_csv(os.path.join(normal_folder, 'overall_results.csv'), index=False)
 
-    for epsilon in [3.0, 6.0, 9.0]:
+    for epsilon in [1.0, 3.0, 6.0, 9.0]:
         dp_folder = os.path.join(model_folder, f'epsilon {epsilon}')
         dp_result_filepath = os.path.join(dp_folder, 'results.csv')
         dp_result = pd.read_csv(dp_result_filepath)

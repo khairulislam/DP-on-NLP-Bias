@@ -1,0 +1,71 @@
+Creating output folder ../experiment/run 3/distilbert-base-uncased/epsilon 1.0
+cuda
+Total parameters count: 66955010
+Trainable parameters count: 7680002, percent 11.470
+Epoch 1 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:01:41.255402
+Epoch 1 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 1 | ɛ: [-0.026001531276153268, 0.258220147654981, 0.7516312390108479] |Train loss: 1.065 | Train result: {'accuracy': 0.7123, 'f1': 0.0092, 'auc': 0.6129} |
+Validation loss: 1.073 | Validation result: {'accuracy': 0.7198, 'f1': 0.0, 'auc': 0.7466} | 
+
+Loss improved from inf to -0.000. Saving model.
+
+Epoch 2 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:01:40.487798
+Epoch 2 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 2 | ɛ: [-0.006016176205791882, 0.285454232662633, 0.7788653240185] |Train loss: 1.064 | Train result: {'accuracy': 0.7188, 'f1': 0.0003, 'auc': 0.7423} |
+Validation loss: 1.216 | Validation result: {'accuracy': 0.7198, 'f1': 0.0, 'auc': 0.7709} | 
+
+Epoch 3 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:01:40.686655
+Epoch 3 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 3 | ɛ: [0.01198449210103468, 0.312688317670285, 0.806099409026152] |Train loss: 1.061 | Train result: {'accuracy': 0.7183, 'f1': 0.0113, 'auc': 0.7522} |
+Validation loss: 1.028 | Validation result: {'accuracy': 0.726, 'f1': 0.0571, 'auc': 0.7838} | 
+
+Loss improved from -0.000 to -0.057. Saving model.
+
+Epoch 4 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:01:41.934467
+Epoch 4 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 4 | ɛ: [0.028431365063777206, 0.3369330354805485, 0.8333334940338039] |Train loss: 0.985 | Train result: {'accuracy': 0.732, 'f1': 0.1928, 'auc': 0.7648} |
+Validation loss: 0.995 | Validation result: {'accuracy': 0.7516, 'f1': 0.2987, 'auc': 0.7874} | 
+
+Loss improved from -0.057 to -0.299. Saving model.
+
+Epoch 5 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:01:40.731575
+Epoch 5 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 5 | ɛ: [0.043859743930387815, 0.3576029422089838, 0.8605675790414559] |Train loss: 0.965 | Train result: {'accuracy': 0.7464, 'f1': 0.3398, 'auc': 0.7694} |
+Validation loss: 0.886 | Validation result: {'accuracy': 0.7639, 'f1': 0.4562, 'auc': 0.7966} | 
+
+Loss improved from -0.299 to -0.456. Saving model.
+
+Epoch 6 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:01:42.848773
+Epoch 6 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 6 | ɛ: [0.05846569301215279, 0.3782728489374191, 0.8878016640491079] |Train loss: 0.962 | Train result: {'accuracy': 0.7543, 'f1': 0.395, 'auc': 0.7776} |
+Validation loss: 1.001 | Validation result: {'accuracy': 0.763, 'f1': 0.4163, 'auc': 0.7935} | 
+Early stopping counter 1 of 3
+
+Epoch 7 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:01:43.526276
+Epoch 7 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 7 | ɛ: [0.07240210954424234, 0.3989427556658544, 0.9150357490567599] |Train loss: 0.976 | Train result: {'accuracy': 0.7588, 'f1': 0.391, 'auc': 0.7749} |
+Validation loss: 0.956 | Validation result: {'accuracy': 0.7646, 'f1': 0.3941, 'auc': 0.799} | 
+Epoch 00007: reducing learning rate of group 0 to 1.0000e-04.
+Early stopping counter 2 of 3
+
+Epoch 8 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:01:41.374622
+Epoch 8 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 8 | ɛ: [0.08577655647086929, 0.41961266239428974, 0.9422698340644118] |Train loss: 0.956 | Train result: {'accuracy': 0.7561, 'f1': 0.3624, 'auc': 0.7827} |
+Validation loss: 0.969 | Validation result: {'accuracy': 0.7697, 'f1': 0.4278, 'auc': 0.8001} | 
+Early stopping counter 3 of 3
+Early stopping..
+Loaded best model from epoch 5
+Epoch 5 (Train):   0%|          | 0/85 [00:00<?, ?it/s]
+Epoch 5 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch 5 (Test):   0%|          | 0/19 [00:00<?, ?it/s]
+At best epoch, train result {'accuracy': 0.7613, 'f1': 0.4514, 'auc': 0.7984} 
+validation result {'accuracy': 0.7639, 'f1': 0.4562, 'auc': 0.7966} 
+test result {'accuracy': 0.7542, 'f1': 0.4371, 'auc': 0.7882}

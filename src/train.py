@@ -29,6 +29,7 @@ def main():
     args = get_arguments()
     tokenizer_root = args.path
     output_folder = os.path.join(args.path, 'normal')
+    print(f'Output folder {output_folder}')
 
     if not os.path.exists(output_folder):
         print(f'Creating output folder {output_folder}')
