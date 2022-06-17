@@ -44,7 +44,7 @@ def get_arguments():
     )
 
     parser.add_argument(
-        '-r', '--run',help='The serial number for this experiment', 
+        '-r', '--run', help='The serial number for this experiment', 
         type=int, default=1
     )
 
