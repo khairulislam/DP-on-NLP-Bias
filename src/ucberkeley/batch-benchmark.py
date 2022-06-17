@@ -12,9 +12,11 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_colwidth', None)
 
 dataset_name = 'ucberkeley'
-model_name = 'distilbert-base-uncased'
+model_name = 'bert-base-uncased'
 text_column = 'text'
 raw_id_column = 'comment_id'
+dataset_directory = f'../../results/{dataset_name}/'
+epsilon_list = [3.0, 6.0, 9.0]
 
 group_map = {
     'gender': {
@@ -36,7 +38,7 @@ for group_key in group_map.keys():
 print(f'Target identities {identities}')
 counts = []
 for run in range(1, 4):
-    run_folder = f'../../results/{dataset_name}/run {run}'
+    run_folder = f'{dataset_directory}/run {run}'
     model_folder = os.path.join(run_folder, model_name)
     normal_folder = os.path.join(model_folder, 'normal')
     result_filepath = os.path.join(normal_folder, 'results.csv')
@@ -66,7 +68,7 @@ for run in range(1, 4):
     overall_results = get_overall_results(group_map, result)
     overall_results.round(3).to_csv(os.path.join(normal_folder, 'overall_results.csv'), index=False)
 
-    for epsilon in [1.0, 3.0, 6.0, 9.0]:
+    for epsilon in epsilon_list:
         dp_folder = os.path.join(model_folder, f'epsilon {epsilon}')
         dp_result_filepath = os.path.join(dp_folder, 'results.csv')
         dp_result = pd.read_csv(dp_result_filepath)
@@ -93,4 +95,4 @@ for run in range(1, 4):
 
 
 count_df = pd.concat(counts).groupby('Identity').agg('mean').round().reset_index()
-count_df.to_csv(os.path.join(f'../../results/{dataset_name}/', 'count.csv'), index=False)
+count_df.to_csv(os.path.join(dataset_directory, 'count.csv'), index=False)
