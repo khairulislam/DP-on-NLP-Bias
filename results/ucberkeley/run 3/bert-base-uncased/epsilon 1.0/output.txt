@@ -1,0 +1,69 @@
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertForSequenceClassification: ['cls.predictions.transform.LayerNorm.weight', 'cls.seq_relationship.bias', 'cls.predictions.bias', 'cls.predictions.decoder.weight', 'cls.seq_relationship.weight', 'cls.predictions.transform.dense.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.dense.bias']
+- This IS expected if you are initializing BertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+cuda
+Total parameters count: 109483778
+Trainable parameters count: 7680002, percent 7.015
+Epoch 1 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:37.564733
+Epoch 1 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 1 | ɛ: [-0.026001531276153268, 0.258220147654981, 0.7516312390108479] |Train loss: 1.155 | Train result: {'accuracy': 0.7217, 'f1': 0.0053, 'auc': 0.6369} |
+Validation loss: 1.175 | Validation result: {'accuracy': 0.7198, 'f1': 0.0, 'auc': 0.7549} | 
+
+Loss improved from inf to -0.000. Saving model.
+
+Epoch 2 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:39.992954
+Epoch 2 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 2 | ɛ: [-0.006016176205791882, 0.285454232662633, 0.7788653240185] |Train loss: 1.090 | Train result: {'accuracy': 0.7189, 'f1': 0.0434, 'auc': 0.7425} |
+Validation loss: 1.019 | Validation result: {'accuracy': 0.7449, 'f1': 0.2384, 'auc': 0.7785} | 
+
+Loss improved from -0.000 to -0.238. Saving model.
+
+Epoch 3 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:43.707057
+Epoch 3 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 3 | ɛ: [0.01198449210103468, 0.312688317670285, 0.806099409026152] |Train loss: 0.932 | Train result: {'accuracy': 0.7561, 'f1': 0.407, 'auc': 0.7788} |
+Validation loss: 0.974 | Validation result: {'accuracy': 0.7729, 'f1': 0.4973, 'auc': 0.7952} | 
+
+Loss improved from -0.238 to -0.497. Saving model.
+
+Epoch 4 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:39.153765
+Epoch 4 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 4 | ɛ: [0.028431365063777206, 0.3369330354805485, 0.8333334940338039] |Train loss: 0.932 | Train result: {'accuracy': 0.7667, 'f1': 0.4915, 'auc': 0.7865} |
+Validation loss: 1.040 | Validation result: {'accuracy': 0.7749, 'f1': 0.5138, 'auc': 0.7988} | 
+
+Loss improved from -0.497 to -0.514. Saving model.
+
+Epoch 5 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:38.803491
+Epoch 5 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 5 | ɛ: [0.043859743930387815, 0.3576029422089838, 0.8605675790414559] |Train loss: 0.988 | Train result: {'accuracy': 0.7654, 'f1': 0.5089, 'auc': 0.7834} |
+Validation loss: 1.071 | Validation result: {'accuracy': 0.7803, 'f1': 0.5117, 'auc': 0.7978} | 
+Early stopping counter 1 of 3
+
+Epoch 6 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:41.271379
+Epoch 6 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 6 | ɛ: [0.05846569301215279, 0.3782728489374191, 0.8878016640491079] |Train loss: 0.962 | Train result: {'accuracy': 0.7739, 'f1': 0.5133, 'auc': 0.7868} |
+Validation loss: 1.021 | Validation result: {'accuracy': 0.7798, 'f1': 0.513, 'auc': 0.7951} | 
+Epoch 00006: reducing learning rate of group 0 to 1.0000e-04.
+Early stopping counter 2 of 3
+
+Epoch 7 (Train):   0%|          | 0/841 [00:00<?, ?it/s]
+Elapsed time 0:02:39.742345
+Epoch 7 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch: 7 | ɛ: [0.07240210954424234, 0.3989427556658544, 0.9150357490567599] |Train loss: 0.983 | Train result: {'accuracy': 0.7739, 'f1': 0.4995, 'auc': 0.7807} |
+Validation loss: 1.043 | Validation result: {'accuracy': 0.7791, 'f1': 0.505, 'auc': 0.7956} | 
+Early stopping counter 3 of 3
+Early stopping..
+Loaded best model from epoch 4
+Epoch 4 (Train):   0%|          | 0/85 [00:00<?, ?it/s]
+Epoch 4 (Validation):   0%|          | 0/19 [00:00<?, ?it/s]
+Epoch 4 (Test):   0%|          | 0/19 [00:00<?, ?it/s]
+At best epoch, train result {'accuracy': 0.7741, 'f1': 0.5113, 'auc': 0.8031} 
+validation result {'accuracy': 0.7749, 'f1': 0.5138, 'auc': 0.7988} 
+test result {'accuracy': 0.7647, 'f1': 0.4946, 'auc': 0.7955}
