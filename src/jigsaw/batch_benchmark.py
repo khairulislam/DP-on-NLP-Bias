@@ -5,12 +5,20 @@ sys.path.append('..')
 from metric_utils import *
 
 group_map = {
-    'gender': {
+    'male vs female': {
         'unprivileged':['female'],
         'privileged':['male']
     },
-    'race': {
+    'male vs transgender': {
+        'unprivileged':['transgender'],
+        'privileged':['male']
+    },
+    'white vs black': {
         'unprivileged':['black'],
+        'privileged': ['white']
+    },
+    'white vs asian': {
+        'unprivileged':['asian'],
         'privileged': ['white']
     }
 }
@@ -21,8 +29,12 @@ for group_key in group_map.keys():
     for subgroup_key in subgroup_map.keys():
         identities.extend(subgroup_map[subgroup_key])
 
+print(f'Target identities {list(set(identities))}')
+print(f'Target groups {list(group_map.keys())}')
+
 dataset_name = 'jigsaw'
 model_name = 'bert-base-uncased'
+epsilon_list = [0.5, 1.0, 3.0, 6.0, 9.0]
 
 test_csv_filepath = os.path.join(f'../../results/{dataset_name}', 'test.csv')
 test_df = pd.read_csv(test_csv_filepath)
@@ -51,7 +63,7 @@ for run in range(1, 4):
     overall_results = get_overall_results(group_map, result)
     overall_results.round(3).to_csv(os.path.join(normal_folder, 'overall_results.csv'), index=False)
 
-    for epsilon in [3.0, 6.0, 9.0]:
+    for epsilon in epsilon_list:
         dp_folder = os.path.join(model_folder, f'epsilon {epsilon}')
         dp_result_filepath = os.path.join(dp_folder, 'results.csv')
         dp_result = pd.read_csv(dp_result_filepath)

@@ -13,7 +13,6 @@ pd.set_option('display.max_colwidth', None)
 
 dataset_name = 'ucberkeley'
 model_name = 'bert-base-uncased'
-text_column = 'text'
 raw_id_column = 'comment_id'
 dataset_directory = f'../../results/{dataset_name}/'
 epsilon_list = [0.5, 1.0, 3.0, 6.0, 9.0]
