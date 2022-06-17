@@ -1,5 +1,7 @@
 Identity,0 (train),1 (train),0 (test),1 (test)
 target_gender_men,2361.0,796.0,502.0,171.0
+target_gender_transgender,882.0,244.0,196.0,51.0
 target_gender_women,4852.0,2305.0,1042.0,511.0
+target_race_asian,831.0,207.0,195.0,53.0
 target_race_black,2103.0,1568.0,483.0,337.0
 target_race_white,1694.0,643.0,378.0,132.0

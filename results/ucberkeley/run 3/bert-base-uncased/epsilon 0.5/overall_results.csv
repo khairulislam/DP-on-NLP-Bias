@@ -1,9 +1,9 @@
-metrics,target_gender_men,target_gender_women,target_race_white,target_race_black,Total
-auc,0.72,0.745,0.776,0.845,0.784
-accuracy,0.77,0.709,0.79,0.736,0.76
-f1_score,0.412,0.465,0.389,0.607,0.457
-precision,0.514,0.58,0.7,0.743,0.644
-recall,0.344,0.388,0.269,0.514,0.354
-false positive rate,0.099,0.136,0.038,0.117,0.078
-bnsp_auc,0.79,0.838,0.749,0.855,
-bpsn_auc,0.726,0.697,0.81,0.764,
+metrics,target_gender_men,target_gender_women,target_gender_transgender,target_race_white,target_race_black,target_race_asian,Total
+auc,0.72,0.745,0.851,0.776,0.845,0.837,0.784
+accuracy,0.77,0.709,0.825,0.79,0.736,0.825,0.76
+f1_score,0.412,0.465,0.458,0.389,0.607,0.313,0.457
+precision,0.514,0.58,0.613,0.7,0.743,0.769,0.644
+recall,0.344,0.388,0.365,0.269,0.514,0.196,0.354
+false positive rate,0.099,0.136,0.059,0.038,0.117,0.015,0.078
+bnsp_auc,0.79,0.838,0.788,0.749,0.855,0.719,
+bpsn_auc,0.726,0.697,0.842,0.81,0.764,0.874,

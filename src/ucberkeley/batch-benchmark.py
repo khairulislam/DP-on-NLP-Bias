@@ -16,15 +16,23 @@ model_name = 'bert-base-uncased'
 text_column = 'text'
 raw_id_column = 'comment_id'
 dataset_directory = f'../../results/{dataset_name}/'
-epsilon_list = [3.0, 6.0, 9.0]
+epsilon_list = [0.5, 1.0, 3.0, 6.0, 9.0]
 
 group_map = {
-    'gender': {
+    'men vs women': {
         'unprivileged':['target_gender_women'],
         'privileged':['target_gender_men']
     },
-    'race': {
+    'men vs transgender': {
+        'unprivileged':['target_gender_transgender'],
+        'privileged':['target_gender_men']
+    },
+    'white vs black': {
         'unprivileged':['target_race_black'],
+        'privileged': ['target_race_white']
+    },
+    'white vs asian': {
+        'unprivileged':['target_race_asian'],
         'privileged': ['target_race_white']
     }
 }
@@ -35,7 +43,9 @@ for group_key in group_map.keys():
     for subgroup_key in subgroup_map.keys():
         identities.extend(subgroup_map[subgroup_key])
 
-print(f'Target identities {identities}')
+print(f'Target identities {list(set(identities))}')
+print(f'Target groups {list(group_map.keys())}')
+
 counts = []
 for run in range(1, 4):
     run_folder = f'{dataset_directory}/run {run}'

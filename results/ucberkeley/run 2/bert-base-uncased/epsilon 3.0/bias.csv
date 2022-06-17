@@ -1,8 +1,8 @@
-fairness_metrics,gender,race
-DP,0.61,0.462
-EqOpp1,0.957,0.572
-EqOpp0,0.963,0.927
-EqOdd,0.96,0.75
-up-accuracy,0.731,0.819
-p-accuracy,0.772,0.766
-accuracy,0.751,0.792
+fairness_metrics,men vs women,men vs transgender,white vs black,white vs asian
+DP,0.61,0.855,0.462,0.881
+EqOpp1,0.957,0.964,0.572,0.963
+EqOpp0,0.963,0.96,0.927,0.932
+EqOdd,0.96,0.962,0.75,0.947
+up-accuracy,0.731,0.826,0.819,0.855
+p-accuracy,0.772,0.772,0.766,0.766
+accuracy,0.751,0.799,0.792,0.811
