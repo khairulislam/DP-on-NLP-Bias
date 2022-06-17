@@ -1,4 +1,7 @@
 """
+After running these following lines, copy the train, test, validation
+csv files manually into the corresponding results/run folder
+
 python preprocess.py --seed 2022 --path "experiment" --run 1
 python preprocess.py --seed 42 --path "experiment" --run 2
 python preprocess.py --seed 888 --path "experiment" --run 3
@@ -105,6 +108,12 @@ def main():
 
     dataset_unique = df.drop_duplicates(subset=id_column)[[id_column, text_column, target_column]]
     df = dataset_unique.merge(grouped, on=id_column, how='inner').reset_index(drop=True)
+
+    
+    transgender_columns = [col for col in target_identities if 'target_gender_transgender_' in col]
+    print(f'Combining transgender columns {transgender_columns} into a single column named: target_gender_transgender') 
+    df['target_gender_transgender'] = df[transgender_columns].any(axis=1)
+
     print(f'Dataset shape after aggregating annotations {df.shape}')
 
     """
