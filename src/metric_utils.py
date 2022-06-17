@@ -9,7 +9,7 @@ id_column = 'id' # result csv files always has id in this same column. can be di
 
 def get_overall_results(group_map, result):
     overall_results = {
-        'metrics': ['size', 'auc', 'accuracy', 'f1_score', 
+        'metrics': ['auc', 'accuracy', 'f1_score', 
         'precision', 'recall', 'false positive rate',
         'bnsp_auc', 'bpsn_auc']
     }
@@ -155,7 +155,7 @@ def calculate_metrics(total_df, group):
     y_true, y_pred, y_prob = df[target_column], df[prediction_column], df[probability_column]
     auc = roc_auc_score(y_true, y_prob)
 
-    results = [len(df[df[group]]), auc]
+    results = [auc]
     methods = [accuracy_score, f1_score, precision_score, recall_score, false_positive_rate]
     for method in methods:
         results.append(method(y_true, y_pred))
