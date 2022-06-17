@@ -34,7 +34,7 @@ for group_key in group_map.keys():
         identities.extend(subgroup_map[subgroup_key])
 
 print(f'Target identities {identities}')
-
+counts = []
 for run in range(1, 4):
     run_folder = f'../../results/{dataset_name}/run {run}'
     model_folder = os.path.join(run_folder, model_name)
@@ -89,3 +89,8 @@ for run in range(1, 4):
     train_df = pd.read_csv(os.path.join(run_folder, 'train.csv'))
     count_df = get_identity_count(train_df, test_df, identities)
     count_df.to_csv(os.path.join(run_folder, 'count.csv'), index=False)
+    counts.append(count_df)
+
+
+count_df = pd.concat(counts).groupby('Identity').agg('mean').round().reset_index()
+count_df.to_csv(os.path.join(f'../../results/{dataset_name}/', 'count.csv'), index=False)
