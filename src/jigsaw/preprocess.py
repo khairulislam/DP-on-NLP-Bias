@@ -87,7 +87,7 @@ def main():
     df[target_column] = df[Config.raw_target_column]>=0.5
 
     id_column = Config.id_column
-    identities = ['male', 'female', 'white', 'black']
+    identities = ['male', 'female', 'transgender', 'white', 'black', 'asian', 'latino', 'heterosexual', 'homosexual_gay_or_lesbian', 'bisexual', 'christian', 'jewish', 'muslim', 'hindu']
     selected_columns = [id_column, text_column, target_column, 'split'] + identities
     df = df[selected_columns]
 
