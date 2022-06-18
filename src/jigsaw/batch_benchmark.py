@@ -20,7 +20,23 @@ group_map = {
     'white vs asian': {
         'unprivileged':['asian'],
         'privileged': ['white']
-    }
+    },
+    # 'white vs latino': {
+    #     'unprivileged':['latino'],
+    #     'privileged': ['white']
+    # },
+    # 'christian vs jewish': {
+    #     'unprivileged':['jewish'],
+    #     'privileged': ['christian']
+    # },
+    # 'christian vs muslim': {
+    #     'unprivileged':['muslim'],
+    #     'privileged': ['christian']
+    # },
+    # 'hetero vs homosexual': {
+    #     'unprivileged':['homosexual_gay_or_lesbian'],
+    #     'privileged': ['heterosexual']
+    # },
 }
 
 identities = []
@@ -35,12 +51,13 @@ print(f'Target groups {list(group_map.keys())}')
 dataset_name = 'jigsaw'
 model_name = 'bert-base-uncased'
 epsilon_list = [0.5, 1.0, 3.0, 6.0, 9.0]
+runs = 3
 
 test_csv_filepath = os.path.join(f'../../results/{dataset_name}', 'test.csv')
 test_df = pd.read_csv(test_csv_filepath)
 test_df.fillna(0, inplace=True)
 
-for run in range(1, 4):
+for run in range(1, runs+1):
     run_folder = f'../../results/{dataset_name}/run {run}'
     model_folder = os.path.join(run_folder, model_name)
     normal_folder = os.path.join(model_folder, 'normal')

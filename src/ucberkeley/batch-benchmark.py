@@ -11,7 +11,7 @@ from metric_utils import *
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_colwidth', None)
 
-dataset_name = 'ucberkeley'
+dataset_name = '/ucberkeley'
 model_name = 'bert-base-uncased'
 raw_id_column = 'comment_id'
 dataset_directory = f'../../results/{dataset_name}/'
@@ -34,6 +34,18 @@ group_map = {
         'unprivileged':['target_race_asian'],
         'privileged': ['target_race_white']
     }
+    # 'white vs latino': {
+    #     'unprivileged':['target_race_latinx'],
+    #     'privileged': ['target_race_white']
+    # },
+    # 'christian vs jewish': {
+    #     'unprivileged':['target_religion_jewish'],
+    #     'privileged': ['target_religion_christian']
+    # },
+    # 'christian vs muslim': {
+    #     'unprivileged':['target_religion_muslim'],
+    #     'privileged': ['target_religion_christian']
+    # }
 }
 
 identities = []

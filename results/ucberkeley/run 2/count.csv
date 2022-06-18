@@ -7,3 +7,9 @@ target_race_black,2093,1574,473,329
 target_race_white,1717,653,349,129
 target_race_asian,840,224,195,47
 target_race_white,1717,653,349,129
+target_race_latinx,982,324,238,67
+target_race_white,1717,653,349,129
+target_religion_jewish,699,284,147,73
+target_religion_christian,1333,215,283,47
+target_religion_muslim,1473,390,289,112
+target_religion_christian,1333,215,283,47

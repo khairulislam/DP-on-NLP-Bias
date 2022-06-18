@@ -115,7 +115,7 @@ def calculate_sensitive_accuracy(df_privileged, df_unprivileged):
 
 def get_all_bias(group_map, df):
     bias_results = {
-        'fairness_metrics': ['DP', 'EqOpp1',
+        'fairness_metrics': ['parity', 'EqOpp1',
         'EqOpp0', 'EqOdd', 'up-accuracy',
         'p-accuracy', 'accuracy']
         }

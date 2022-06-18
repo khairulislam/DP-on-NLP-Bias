@@ -4,4 +4,8 @@ target_gender_transgender,882.0,244.0,196.0,51.0
 target_gender_women,4852.0,2305.0,1042.0,511.0
 target_race_asian,831.0,207.0,195.0,53.0
 target_race_black,2103.0,1568.0,483.0,337.0
+target_race_latinx,1007.0,313.0,230.0,73.0
 target_race_white,1694.0,643.0,378.0,132.0
+target_religion_christian,1358.0,212.0,299.0,50.0
+target_religion_jewish,708.0,290.0,149.0,67.0
+target_religion_muslim,1476.0,404.0,299.0,102.0

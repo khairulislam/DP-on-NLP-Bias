@@ -1,5 +1,5 @@
 fairness_metrics,male vs female,male vs transgender,white vs black,white vs asian
-DP,0.985,0.703,0.755,0.475
+parity,0.985,0.703,0.755,0.475
 EqOpp1,0.935,0.983,0.924,0.89
 EqOpp0,0.965,0.937,0.917,0.689
 EqOdd,0.95,0.96,0.92,0.79
