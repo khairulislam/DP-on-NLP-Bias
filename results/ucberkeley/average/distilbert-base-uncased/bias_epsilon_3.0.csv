@@ -1,0 +1,8 @@
+fairness_metrics,men vs women,men vs transgender,white vs black,white vs asian
+EqOdd,0.933,0.881,0.765,0.966
+EqOpp0,0.953,0.951,0.921,0.958
+EqOpp1,0.912,0.81,0.61,0.973
+accuracy,0.767,0.817,0.791,0.805
+p-accuracy,0.807,0.807,0.782,0.782
+parity,0.595,0.85,0.519,0.913
+up-accuracy,0.728,0.828,0.8,0.829
