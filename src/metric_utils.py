@@ -117,7 +117,7 @@ def get_all_bias(group_map, df):
     bias_results = {
         'fairness_metrics': ['parity', 'EqOpp1',
         'EqOpp0', 'EqOdd', 'up-accuracy',
-        'p-accuracy', 'accuracy']
+        'p-accuracy', 'accuracy', 'bpsn', 'bnsp']
         }
 
     for group_key in group_map.keys():
@@ -138,6 +138,11 @@ def calculate_bias(df, privileged_group, unprivileged_group):
     accuracy_unprivileged, accuracy_privileged, accuracy = calculate_sensitive_accuracy(df_privileged, df_unprivileged)
 
     biases = [demographic_parity, EqOpp1, EqOpp0, EqOdd, accuracy_unprivileged, accuracy_privileged, accuracy]
+    bpsn = compute_fixed_bpsn_auc(df, privileged_group, unprivileged_group)
+    bnsp = compute_fixed_bnsp_auc(df, privileged_group, unprivileged_group)
+
+    biases.extend([bpsn, bnsp])
+
     return biases
 
 SUBGROUP_AUC = 'auc'
@@ -177,6 +182,20 @@ def compute_auc(y_true, y_pred):
         return roc_auc_score(y_true, y_pred)
     except ValueError:
         return np.nan
+
+def compute_fixed_bnsp_auc(df, privileged, underprivileged):
+    """Computes the AUC of the within-subgroup positive examples and the background negative examples."""
+    subgroup_positive_examples = df[(df[underprivileged]).any(axis=1) & df[target_column]]
+    non_subgroup_negative_examples = df[(df[privileged]).all(axis=1) & (~df[target_column])]
+    examples = pd.concat([subgroup_positive_examples, non_subgroup_negative_examples])# subgroup_negative_examples.append(non_subgroup_positive_examples)
+    return compute_auc(examples[target_column], examples[probability_column])
+
+def compute_fixed_bpsn_auc(df, privileged, underprivileged):
+    """Computes the AUC of the within-subgroup negative examples and the background positive examples."""
+    subgroup_negative_examples = df[(df[underprivileged]).any(axis=1) & (~df[target_column])]
+    non_subgroup_positive_examples = df[(df[privileged]).all(axis=1) & df[target_column] ]
+    examples = pd.concat([subgroup_negative_examples, non_subgroup_positive_examples])# subgroup_negative_examples.append(non_subgroup_positive_examples)
+    return compute_auc(examples[target_column], examples[probability_column])
 
 def compute_bpsn_auc(df, subgroup, label):
     """Computes the AUC of the within-subgroup negative examples and the background positive examples."""
