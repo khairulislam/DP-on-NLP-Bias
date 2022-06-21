@@ -129,6 +129,28 @@ def get_all_bias(group_map, df):
 
     return pd.DataFrame(bias_results) 
 
+def get_all_global_bias(subgroups, df):
+    bias_results = {
+        'fairness_metrics': ['parity', 'EqOpp1',
+        'EqOpp0', 'EqOdd', 'accuracy']
+        }
+
+    for subgroup in subgroups:
+        bias_results[subgroup] = calculate_global_bias(df, subgroup)
+
+    return pd.DataFrame(bias_results) 
+
+def calculate_global_bias(df, subgroup):
+    df_subgroup = df[df[subgroup]]
+    df_background = df[~df[subgroup]]
+
+    demographic_parity = calculate_demographic_parity(df_background, df_subgroup)
+    EqOpp1, EqOpp0, EqOdd = calculate_equality(df_background, df_subgroup)
+    accuracy = accuracy_score(df_subgroup[target_column], df_subgroup[prediction_column])
+    biases = [demographic_parity, EqOpp1, EqOpp0, EqOdd, accuracy]
+
+    return biases
+
 def calculate_bias(df, privileged_group, unprivileged_group):
     df_privileged = df[(df[privileged_group]).any(axis=1)]
     df_unprivileged = df[(df[unprivileged_group]).any(axis=1)]

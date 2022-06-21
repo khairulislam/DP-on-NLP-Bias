@@ -74,11 +74,14 @@ for run in range(1, runs+1):
     result[prediction_column] = result[probability_column] >=0.5
     result = binarize(result, [target_column] + identities)
 
-    bias_results = get_all_bias(group_map, result)
-    bias_results.round(3).to_csv(os.path.join(normal_folder, 'bias.csv'), index=False)
+    bias_results = get_all_global_bias(identities, result)
+    bias_results.round(3).to_csv(os.path.join(normal_folder, 'global_bias.csv'), index=False)
 
-    overall_results = get_overall_results(group_map, result)
-    overall_results.round(3).to_csv(os.path.join(normal_folder, 'overall_results.csv'), index=False)
+    # bias_results = get_all_bias(group_map, result)
+    # bias_results.round(3).to_csv(os.path.join(normal_folder, 'bias.csv'), index=False)
+
+    # overall_results = get_overall_results(group_map, result)
+    # overall_results.round(3).to_csv(os.path.join(normal_folder, 'overall_results.csv'), index=False)
 
     for epsilon in epsilon_list:
         dp_folder = os.path.join(model_folder, f'epsilon {epsilon}')
@@ -93,8 +96,11 @@ for run in range(1, runs+1):
         dp_result[prediction_column] = dp_result[probability_column] >=0.5
         dp_result = binarize(dp_result, [target_column] + identities)
 
-        bias_results = get_all_bias(group_map, dp_result)
-        bias_results.round(3).to_csv(os.path.join(dp_folder, 'bias.csv'), index=False)
+        bias_results = get_all_global_bias(identities, dp_result)
+        bias_results.round(3).to_csv(os.path.join(dp_folder, 'global_bias.csv'), index=False)
 
-        overall_results = get_overall_results(group_map, dp_result)
-        overall_results.round(3).to_csv(os.path.join(dp_folder, 'overall_results.csv'), index=False)
+        # bias_results = get_all_bias(group_map, dp_result)
+        # bias_results.round(3).to_csv(os.path.join(dp_folder, 'bias.csv'), index=False)
+
+        # overall_results = get_overall_results(group_map, dp_result)
+        # overall_results.round(3).to_csv(os.path.join(dp_folder, 'overall_results.csv'), index=False)

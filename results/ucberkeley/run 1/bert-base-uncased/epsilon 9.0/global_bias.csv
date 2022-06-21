@@ -1,0 +1,8 @@
+fairness_metrics,target_gender_women,target_gender_men,target_gender_transgender,target_race_black,target_race_white,target_race_asian
+parity,0.914,0.842,0.819,0.911,0.825,0.817
+EqOpp1,0.97,0.977,0.879,0.684,0.846,0.822
+EqOpp0,0.943,0.984,0.967,0.941,0.983,0.933
+EqOdd,0.956,0.98,0.923,0.813,0.914,0.878
+up-accuracy,0.731,0.782,0.819,0.795,0.774,0.813
+p-accuracy,0.731,0.782,0.819,0.795,0.774,0.813
+accuracy,0.731,0.782,0.819,0.795,0.774,0.813
