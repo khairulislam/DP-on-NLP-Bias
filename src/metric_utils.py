@@ -137,7 +137,7 @@ def calculate_bias(df, privileged_group, unprivileged_group):
     EqOpp1, EqOpp0, EqOdd = calculate_equality(df_privileged, df_unprivileged)
     accuracy_unprivileged, accuracy_privileged, accuracy = calculate_sensitive_accuracy(df_privileged, df_unprivileged)
 
-    biases = [demographic_parity, EqOpp1, EqOpp0, EqOdd, accuracy_unprivileged, accuracy_privileged, accuracy]
+    biases = [demographic_parity, EqOpp1, EqOpp0, EqOdd, accuracy_privileged, accuracy_unprivileged, accuracy]
     return biases
 
 SUBGROUP_AUC = 'auc'
