@@ -1,6 +1,7 @@
 from sklearn.metrics import confusion_matrix, roc_auc_score, accuracy_score, f1_score, precision_score, recall_score
 import numpy as np
 import pandas as pd
+from scipy.stats import mannwhitneyu
 
 prediction_column = 'preds'
 probability_column = 'probs'
@@ -11,7 +12,7 @@ def get_overall_results(group_map, result):
     overall_results = {
         'metrics': ['auc', 'accuracy', 'f1_score', 
         'precision', 'recall', 'false positive rate',
-        'bnsp_auc', 'bpsn_auc']
+        'bnsp_auc', 'bpsn_auc', 'posAEG', 'negAEG']
     }
 
     for group_key in group_map.keys():
@@ -106,6 +107,19 @@ def calculate_equality(df_privileged, df_unprivileged):
 
     return EqOpp1, EqOpp0, EqOdd
 
+def positiveAEG(df, subgroup):
+    subgroup_positive_examples = df[(df[subgroup]).any(axis=1) & (df[target_column])]
+    background_positive_examples = df[(~df[subgroup]).all(axis=1) & (df[target_column])]
+    stat, p_value = mannwhitneyu(subgroup_positive_examples[prediction_column], background_positive_examples[prediction_column])
+    return 0.5 - stat*1.0/(len(background_positive_examples)*len(subgroup_positive_examples))
+
+def negativeAEG(df, subgroup):
+    subgroup_negative_examples = df[(df[subgroup]).any(axis=1) & (~df[target_column])]
+    background_negative_examples = df[(~df[subgroup]).all(axis=1) & (~df[target_column])]
+    stat, p_value = mannwhitneyu(subgroup_negative_examples[prediction_column], background_negative_examples[prediction_column])
+    # print(f'{subgroup} Negative {stat, p_value}')
+    return 0.5 - stat*1.0/(len(background_negative_examples)*len(subgroup_negative_examples))
+
 def calculate_sensitive_accuracy(df_privileged, df_unprivileged):
     accuracy_privileged = accuracy_score(df_privileged[target_column], df_privileged[prediction_column])
     accuracy_unprivileged = accuracy_score(df_unprivileged[target_column], df_unprivileged[prediction_column])
@@ -162,13 +176,17 @@ def calculate_metrics(total_df, group):
 
     # this is for overall metric, not a subgroup
     if len(group) == 0:
-        results.extend([None, None])
+        results.extend([None, None, None, None])
         return results
 
     # if this is for a subgroup
     bnsp_auc = compute_bnsp_auc(total_df, group, target_column)
     bpsn_auc = compute_bpsn_auc(total_df, group, target_column)
     results.extend([bnsp_auc, bpsn_auc])
+
+    posAEG = positiveAEG(total_df, group)
+    negAEG = negativeAEG(total_df, group)
+    results.extend([posAEG, negAEG])
 
     return results
 
