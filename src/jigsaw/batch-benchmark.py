@@ -5,48 +5,18 @@ sys.path.append('..')
 from metric_utils import *
 
 group_map = {
-    'male vs female': {
-        'unprivileged':['female'],
-        'privileged':['male']
-    },
-    'male vs transgender': {
-        'unprivileged':['transgender'],
-        'privileged':['male']
-    },
-    'white vs black': {
-        'unprivileged':['black'],
-        'privileged': ['white']
-    },
-    'white vs asian': {
-        'unprivileged':['asian'],
-        'privileged': ['white']
-    },
-    # 'white vs latino': {
-    #     'unprivileged':['latino'],
-    #     'privileged': ['white']
-    # },
-    # 'christian vs jewish': {
-    #     'unprivileged':['jewish'],
-    #     'privileged': ['christian']
-    # },
-    # 'christian vs muslim': {
-    #     'unprivileged':['muslim'],
-    #     'privileged': ['christian']
-    # },
-    # 'hetero vs homosexual': {
-    #     'unprivileged':['homosexual_gay_or_lesbian'],
-    #     'privileged': ['heterosexual']
-    # },
+    'gender':['male', 'female', 'transgender'],
+    'race':['white', 'black', 'asian']
 }
 
-identities = []
-for group_key in group_map.keys():
-    subgroup_map = group_map[group_key]
-    for subgroup_key in subgroup_map.keys():
-        identities.extend(subgroup_map[subgroup_key])
+attributes = list(group_map.keys())
+protected_subgroups = []
+for attribute in group_map.keys():
+    subgroups = group_map[attribute]
+    protected_subgroups.extend(subgroups)
 
-print(f'Target identities {list(set(identities))}')
-print(f'Target groups {list(group_map.keys())}')
+print(f'Sensitive attributes {attributes}')
+print(f'Protected subgroups {protected_subgroups}')
 
 dataset_name = 'jigsaw'
 model_name = 'bert-base-uncased'
@@ -72,12 +42,12 @@ for run in range(1, runs+1):
 
     result = result.merge(test_df.drop(columns=extra_columns), on=id_column, how='inner').reset_index(drop=True)
     result[prediction_column] = result[probability_column] >=0.5
-    result = binarize(result, [target_column] + identities)
+    result = binarize(result, [target_column] + protected_subgroups)
 
-    bias_results = get_all_bias(group_map, result)
+    bias_results = get_all_bias(result, protected_subgroups)
     bias_results.round(3).to_csv(os.path.join(normal_folder, 'bias.csv'), index=False)
 
-    overall_results = get_overall_results(group_map, result)
+    overall_results = get_overall_results(result, protected_subgroups)
     overall_results.round(3).to_csv(os.path.join(normal_folder, 'overall_results.csv'), index=False)
 
     for epsilon in epsilon_list:
@@ -91,10 +61,10 @@ for run in range(1, runs+1):
         dp_result = dp_result.merge(test_df.drop(columns=extra_columns), on=id_column, how='inner').reset_index(drop=True)
         
         dp_result[prediction_column] = dp_result[probability_column] >=0.5
-        dp_result = binarize(dp_result, [target_column] + identities)
+        dp_result = binarize(dp_result, [target_column] + protected_subgroups)
 
-        bias_results = get_all_bias(group_map, dp_result)
+        bias_results = get_all_bias(dp_result, protected_subgroups)
         bias_results.round(3).to_csv(os.path.join(dp_folder, 'bias.csv'), index=False)
 
-        overall_results = get_overall_results(group_map, dp_result)
+        overall_results = get_overall_results(dp_result, protected_subgroups)
         overall_results.round(3).to_csv(os.path.join(dp_folder, 'overall_results.csv'), index=False)

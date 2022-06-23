@@ -8,31 +8,21 @@ probability_column = 'probs'
 target_column = 'labels'
 id_column = 'id' # result csv files always has id in this same column. can be different in train or test csv files
 
-def get_overall_results(group_map, result):
+def get_overall_results(result:pd.DataFrame, groups:list[str]):
     overall_results = {
         'metrics': ['auc', 'accuracy', 'f1_score', 
-        'precision', 'recall', 'false positive rate',
-        'bnsp_auc', 'bpsn_auc', 'posAEG', 'negAEG']
+        'precision', 'recall', 'false positive rate']
     }
 
-    for group_key in group_map.keys():
-        subgroup_map = group_map[group_key]
-        privileged_group = subgroup_map['privileged']
-        unprivileged_group = subgroup_map['unprivileged']
+    for group in groups:
+        overall_results[group] = calculate_metrics(result, group)
 
-        privileged_group_name = ','.join(privileged_group)
-        unprivileged_group_name = ','.join(unprivileged_group)
+    overall_results['Total'] = calculate_metrics(result, None)
 
-        overall_results[privileged_group_name] = calculate_metrics(result, privileged_group)
-        overall_results[unprivileged_group_name] = calculate_metrics(result, unprivileged_group)
-
-    overall_results['Total'] = calculate_metrics(result, [])
-
-    overall_results = pd.DataFrame(overall_results) 
-    # overall_results.columns = [col.replace('target_', '') for col in overall_results.columns]
+    overall_results = pd.DataFrame(overall_results)
     return overall_results
 
-def get_identity_count(train_df, test_df, identities):
+def get_identity_count(train_df:pd.DataFrame, test_df:pd.DataFrame, identities:list[str]):
     count_dict = {
         'Identity':identities,
         '0 (train)':[],
@@ -76,7 +66,7 @@ def true_positive_rate(y_true, y_pred):
         true_positive_rate = tp / positives
     return true_positive_rate
 
-def calculate_demographic_parity(df_privileged, df_unprivileged):
+def calculate_demographic_parity(df_privileged:pd.DataFrame, df_unprivileged:pd.DataFrame):
     privileged_number = df_privileged.shape[0]
     if privileged_number >0:
         privileged_positive_percent = sum(df_privileged[prediction_column]) / privileged_number
@@ -107,62 +97,59 @@ def calculate_equality(df_privileged, df_unprivileged):
 
     return EqOpp1, EqOpp0, EqOdd
 
-def positiveAEG(df, subgroup):
-    subgroup_positive_examples = df[(df[subgroup]).any(axis=1) & (df[target_column])]
-    background_positive_examples = df[(~df[subgroup]).all(axis=1) & (df[target_column])]
+def positiveAEG(df:pd.DataFrame, subgroup:str):
+    subgroup_positive_examples = df[df[subgroup] & (df[target_column])]
+    background_positive_examples = df[(~df[subgroup]) & (df[target_column])]
     stat, p_value = mannwhitneyu(subgroup_positive_examples[prediction_column], background_positive_examples[prediction_column])
     return 0.5 - stat*1.0/(len(background_positive_examples)*len(subgroup_positive_examples))
 
-def negativeAEG(df, subgroup):
-    subgroup_negative_examples = df[(df[subgroup]).any(axis=1) & (~df[target_column])]
-    background_negative_examples = df[(~df[subgroup]).all(axis=1) & (~df[target_column])]
+def negativeAEG(df:pd.DataFrame, subgroup:str):
+    subgroup_negative_examples = df[df[subgroup] & (~df[target_column])]
+    background_negative_examples = df[(~df[subgroup]) & (~df[target_column])]
     stat, p_value = mannwhitneyu(subgroup_negative_examples[prediction_column], background_negative_examples[prediction_column])
     # print(f'{subgroup} Negative {stat, p_value}')
     return 0.5 - stat*1.0/(len(background_negative_examples)*len(subgroup_negative_examples))
 
-def calculate_sensitive_accuracy(df_privileged, df_unprivileged):
-    accuracy_privileged = accuracy_score(df_privileged[target_column], df_privileged[prediction_column])
-    accuracy_unprivileged = accuracy_score(df_unprivileged[target_column], df_unprivileged[prediction_column])
-
-    accuracy = (accuracy_privileged + accuracy_unprivileged) / 2
-    return accuracy_unprivileged, accuracy_privileged, accuracy
-
-def get_all_bias(group_map, df):
+def get_all_bias(df:pd.DataFrame, protected_groups:list[str]):
     bias_results = {
-        'fairness_metrics': ['parity', 'EqOpp1',
-        'EqOpp0', 'EqOdd', 'up-accuracy',
-        'p-accuracy', 'accuracy']
+        'fairness_metrics': ['parity', 'eqOpp1',
+        'eqOpp0', 'eqOdd', 'p-accuracy',
+        'auc', 'bnsp', 'bpsn', 'posAEG', 'negAEG']
         }
 
-    for group_key in group_map.keys():
-        subgroup_map = group_map[group_key]
-        privileged_group = subgroup_map['privileged']
-        unprivileged_group = subgroup_map['unprivileged']
+    for group in protected_groups:
+        bias_results[group] = calculate_bias(df, group)
 
-        bias_results[group_key] = calculate_bias(df, privileged_group, unprivileged_group)
+    return pd.DataFrame(bias_results)
 
-    return pd.DataFrame(bias_results) 
+def calculate_bias(df:pd.DataFrame, group:str):
+    df_protected = df[df[group]]
+    df_background = df[~df[group]]
 
-def calculate_bias(df, privileged_group, unprivileged_group):
-    df_privileged = df[(df[privileged_group]).any(axis=1)]
-    df_unprivileged = df[(df[unprivileged_group]).any(axis=1)]
+    demographic_parity = calculate_demographic_parity(df_background, df_protected)
+    eqOpp1, eqOpp0, eqOdd = calculate_equality(df_background, df_protected)
+    accuracy_protected = accuracy_score(df_protected[target_column], df_protected[prediction_column])
 
-    demographic_parity = calculate_demographic_parity(df_privileged, df_unprivileged)
-    EqOpp1, EqOpp0, EqOdd = calculate_equality(df_privileged, df_unprivileged)
-    accuracy_unprivileged, accuracy_privileged, accuracy = calculate_sensitive_accuracy(df_privileged, df_unprivileged)
+    biases = [demographic_parity, eqOpp1, eqOpp0, eqOdd, accuracy_protected]
 
-    biases = [demographic_parity, EqOpp1, EqOpp0, EqOdd, accuracy_privileged, accuracy_unprivileged, accuracy]
+    auc = roc_auc_score(df_protected[target_column], df_protected[probability_column])
+    bnsp_auc = compute_bnsp_auc(df, group, target_column)
+    bpsn_auc = compute_bpsn_auc(df, group, target_column)
+    posAEG = positiveAEG(df, group)
+    negAEG = negativeAEG(df, group)
+
+    biases.extend([auc, bnsp_auc, bpsn_auc, posAEG, negAEG])
     return biases
 
 SUBGROUP_AUC = 'auc'
 BPSN_AUC = 'bpsn_auc'  # stands for background positive, subgroup negative
 BNSP_AUC = 'bnsp_auc'  # stands for background negative, subgroup positive
 
-def calculate_metrics(total_df, group):
-    # if group is empty return the overall metric. 
+def calculate_metrics(total_df:pd.DataFrame, group:str=None):
+    # if group is None return the overall metric. 
     # otherwise only calculate for example of that group
-    if len(group) > 0:
-        df = total_df[(total_df[group]).any(axis=1)]
+    if group:
+        df = total_df[total_df[group]]
     else:
         df = total_df.copy()
 
@@ -174,20 +161,6 @@ def calculate_metrics(total_df, group):
     for method in methods:
         results.append(method(y_true, y_pred))
 
-    # this is for overall metric, not a subgroup
-    if len(group) == 0:
-        results.extend([None, None, None, None])
-        return results
-
-    # if this is for a subgroup
-    bnsp_auc = compute_bnsp_auc(total_df, group, target_column)
-    bpsn_auc = compute_bpsn_auc(total_df, group, target_column)
-    results.extend([bnsp_auc, bpsn_auc])
-
-    posAEG = positiveAEG(total_df, group)
-    negAEG = negativeAEG(total_df, group)
-    results.extend([posAEG, negAEG])
-
     return results
 
 def compute_auc(y_true, y_pred):
@@ -198,15 +171,15 @@ def compute_auc(y_true, y_pred):
 
 def compute_bpsn_auc(df, subgroup, label):
     """Computes the AUC of the within-subgroup negative examples and the background positive examples."""
-    subgroup_negative_examples = df[(df[subgroup]).any(axis=1) & (~df[label])]
-    non_subgroup_positive_examples = df[(~df[subgroup]).all(axis=1) & (df[label])]
+    subgroup_negative_examples = df[df[subgroup] & (~df[label])]
+    non_subgroup_positive_examples = df[(~df[subgroup]) & (df[label])]
     examples = pd.concat([subgroup_negative_examples, non_subgroup_positive_examples])# subgroup_negative_examples.append(non_subgroup_positive_examples)
     return compute_auc(examples[label], examples[probability_column])
 
 def compute_bnsp_auc(df, subgroup, label):
     """Computes the AUC of the within-subgroup positive examples and the background negative examples."""
-    subgroup_positive_examples = df[(df[subgroup]).any(axis=1) & (df[label])]
-    non_subgroup_negative_examples = df[(~df[subgroup]).all(axis=1) & (~df[label])]
+    subgroup_positive_examples = df[df[subgroup] & (df[label])]
+    non_subgroup_negative_examples = df[(~df[subgroup]) & (~df[label])]
     examples = pd.concat([subgroup_positive_examples, non_subgroup_negative_examples]) # subgroup_positive_examples.append(non_subgroup_negative_examples)
     return compute_auc(examples[label], examples[probability_column])
 
