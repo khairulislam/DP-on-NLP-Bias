@@ -1,8 +1,11 @@
-fairness_metrics,men vs women,men vs transgender,white vs black,white vs asian
-parity,0.483,0.832,0.527,0.869
-EqOpp1,0.928,0.903,0.679,0.954
-EqOpp0,0.925,0.967,0.934,0.934
-EqOdd,0.927,0.935,0.806,0.944
-up-accuracy,0.803,0.803,0.787,0.787
-p-accuracy,0.753,0.824,0.811,0.833
-accuracy,0.778,0.813,0.799,0.81
+fairness_metrics,target_gender_men,target_gender_women,target_gender_transgender,target_race_white,target_race_black,target_race_asian
+parity,0.779,0.899,0.755,0.766,0.852,0.752
+eqOpp1,0.941,0.972,0.845,0.842,0.775,0.801
+eqOpp0,0.995,0.906,0.961,0.984,0.942,0.916
+eqOdd,0.968,0.939,0.903,0.913,0.858,0.859
+p-accuracy,0.803,0.753,0.824,0.787,0.811,0.833
+auc,0.83,0.816,0.87,0.8,0.874,0.801
+bnsp,0.848,0.868,0.803,0.816,0.91,0.715
+bpsn,0.843,0.821,0.909,0.853,0.806,0.917
+posAEG,0.03,-0.014,0.077,0.079,-0.113,0.099
+negAEG,0.002,-0.047,0.019,0.008,-0.029,0.042
