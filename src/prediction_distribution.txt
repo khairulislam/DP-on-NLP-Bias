@@ -1,0 +1,423 @@
+jigsaw
+None_total
+   index     preds
+0  False  0.862098
+1   True  0.137902
+
+None_male
+   index     preds
+0  False  0.702967
+1   True  0.297033
+
+None_female
+   index     preds
+0  False  0.746989
+1   True  0.253011
+
+None_transgender
+   index     preds
+0  False  0.560724
+1   True  0.439276
+
+None_white
+   index     preds
+0  False  0.400679
+1   True  0.599321
+
+None_black
+   index     preds
+0  False  0.404293
+1   True  0.595707
+
+None_asian
+   index     preds
+0  False  0.823349
+1   True  0.176651
+
+9.0_total
+   index     preds
+0  False  0.844626
+1   True  0.155374
+
+9.0_male
+   index     preds
+0  False  0.655619
+1   True  0.344381
+
+9.0_female
+   index     preds
+0  False  0.715603
+1   True  0.284397
+
+9.0_transgender
+   index     preds
+0  False  0.534884
+1   True  0.465116
+
+9.0_white
+   index     preds
+0  False  0.370685
+1   True  0.629315
+
+9.0_black
+   index     preds
+0  False  0.434954
+1   True  0.565046
+
+9.0_asian
+   index     preds
+0  False  0.766513
+1   True  0.233487
+
+6.0_total
+   index     preds
+0  False  0.844283
+1   True  0.155717
+
+6.0_male
+   index     preds
+0  False  0.654198
+1   True  0.345802
+
+6.0_female
+   index     preds
+0  False  0.718166
+1   True  0.281834
+
+6.0_transgender
+   index     preds
+0  False  0.560724
+1   True  0.439276
+
+6.0_white
+   index     preds
+0  False  0.373231
+1   True  0.626769
+
+6.0_black
+   index     preds
+0  False  0.448533
+1   True  0.551467
+
+6.0_asian
+   index     preds
+0  False  0.766513
+1   True  0.233487
+
+3.0_total
+   index     preds
+0  False  0.843914
+1   True  0.156086
+
+3.0_male
+   index     preds
+0  False  0.653409
+1   True  0.346591
+
+3.0_female
+   index     preds
+0  False  0.722393
+1   True  0.277607
+
+3.0_transgender
+   index     preds
+0  False  0.602067
+1   True  0.397933
+
+3.0_white
+   index     preds
+0  False  0.385682
+1   True  0.614318
+
+3.0_black
+   index     preds
+0  False  0.481822
+1   True  0.518178
+
+3.0_asian
+   index     preds
+0  False  0.774194
+1   True  0.225806
+
+1.0_total
+   index     preds
+0  False  0.841215
+1   True  0.158785
+
+1.0_male
+   index     preds
+0  False  0.673295
+1   True  0.326705
+
+1.0_female
+   index     preds
+0  False  0.741993
+1   True  0.258007
+
+1.0_transgender
+   index     preds
+0  False  0.697674
+1   True  0.302326
+
+1.0_white
+   index    preds
+0  False  0.46378
+1   True  0.53622
+
+1.0_black
+   index     preds
+0  False  0.579501
+1   True  0.420499
+
+1.0_asian
+   index     preds
+0  False  0.794163
+1   True  0.205837
+
+0.5_total
+   index     preds
+0  False  0.847119
+1   True  0.152881
+
+0.5_male
+   index     preds
+0  False  0.705335
+1   True  0.294665
+
+0.5_female
+   index     preds
+0  False  0.761722
+1   True  0.238278
+
+0.5_transgender
+   index     preds
+0  False  0.744186
+1   True  0.255814
+
+0.5_white
+   index     preds
+0  False  0.531975
+1   True  0.468025
+
+0.5_black
+   index     preds
+0  False  0.643014
+1   True  0.356986
+
+0.5_asian
+   index    preds
+0  False  0.81874
+1   True  0.18126
+
+
+
+ucberkeley
+None_total
+   index     preds
+0  False  0.737252
+1   True  0.262748
+
+None_target_gender_men
+   index     preds
+0  False  0.773135
+1   True  0.226865
+
+None_target_gender_women
+   index     preds
+0  False  0.660073
+1   True  0.339927
+
+None_target_gender_transgender
+   index     preds
+0  False  0.840705
+1   True  0.159295
+
+None_target_race_white
+   index     preds
+0  False  0.792941
+1   True  0.207059
+
+None_target_race_black
+   index     preds
+0  False  0.567942
+1   True  0.432058
+
+None_target_race_asian
+   index     preds
+0  False  0.869666
+1   True  0.130334
+
+9.0_total
+   index     preds
+0  False  0.805128
+1   True  0.194872
+
+9.0_target_gender_men
+   index     preds
+0  False  0.802801
+1   True  0.197199
+
+9.0_target_gender_women
+   index     preds
+0  False  0.759528
+1   True  0.240472
+
+9.0_target_gender_transgender
+   index     preds
+0  False  0.876722
+1   True  0.123278
+
+9.0_target_race_white
+   index     preds
+0  False  0.859567
+1   True  0.140433
+
+9.0_target_race_black
+   index     preds
+0  False  0.623732
+1   True  0.376268
+
+9.0_target_race_asian
+   index     preds
+0  False  0.918306
+1   True  0.081694
+
+6.0_total
+   index     preds
+0  False  0.800519
+1   True  0.199481
+
+6.0_target_gender_men
+   index    preds
+0  False  0.80377
+1   True  0.19623
+
+6.0_target_gender_women
+   index     preds
+0  False  0.748316
+1   True  0.251684
+
+6.0_target_gender_transgender
+   index     preds
+0  False  0.881643
+1   True  0.118357
+
+6.0_target_race_white
+   index     preds
+0  False  0.852038
+1   True  0.147962
+
+6.0_target_race_black
+   index     preds
+0  False  0.623157
+1   True  0.376843
+
+6.0_target_race_asian
+   index     preds
+0  False  0.918054
+1   True  0.081946
+
+3.0_total
+   index     preds
+0  False  0.817459
+1   True  0.182541
+
+3.0_target_gender_men
+   index     preds
+0  False  0.822145
+1   True  0.177855
+
+3.0_target_gender_women
+   index     preds
+0  False  0.774337
+1   True  0.225663
+
+3.0_target_gender_transgender
+   index     preds
+0  False  0.882838
+1   True  0.117162
+
+3.0_target_race_white
+   index     preds
+0  False  0.867775
+1   True  0.132225
+
+3.0_target_race_black
+   index     preds
+0  False  0.636506
+1   True  0.363494
+
+3.0_target_race_asian
+   index     preds
+0  False  0.930143
+1   True  0.069857
+
+1.0_total
+   index     preds
+0  False  0.820167
+1   True  0.179833
+
+1.0_target_gender_men
+   index     preds
+0  False  0.816241
+1   True  0.183759
+
+1.0_target_gender_women
+   index     preds
+0  False  0.775482
+1   True  0.224518
+
+1.0_target_gender_transgender
+   index     preds
+0  False  0.890781
+1   True  0.109219
+
+1.0_target_race_white
+   index     preds
+0  False  0.865995
+1   True  0.134005
+
+1.0_target_race_black
+   index     preds
+0  False  0.652424
+1   True  0.347576
+
+1.0_target_race_asian
+   index     preds
+0  False  0.931576
+1   True  0.068424
+
+0.5_total
+   index     preds
+0  False  0.845174
+1   True  0.154826
+
+0.5_target_gender_men
+   index     preds
+0  False  0.835989
+1   True  0.164011
+
+0.5_target_gender_women
+   index     preds
+0  False  0.808967
+1   True  0.191033
+
+0.5_target_gender_transgender
+   index     preds
+0  False  0.895191
+1   True  0.104809
+
+0.5_target_race_white
+   index     preds
+0  False  0.892444
+1   True  0.107556
+
+0.5_target_race_black
+   index     preds
+0  False  0.681808
+1   True  0.318192
+
+0.5_target_race_asian
+   index     preds
+0  False  0.942179
+1   True  0.057821

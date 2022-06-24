@@ -8,6 +8,10 @@ probability_column = 'probs'
 target_column = 'labels'
 id_column = 'id' # result csv files always has id in this same column. can be different in train or test csv files
 
+SUBGROUP_AUC = 'auc'
+BPSN_AUC = 'bpsn_auc'  # stands for background positive, subgroup negative
+BNSP_AUC = 'bnsp_auc'  # stands for background negative, subgroup positive
+
 def get_overall_results(result:pd.DataFrame, groups:list[str]):
     overall_results = {
         'metrics': ['auc', 'accuracy', 'f1_score', 
@@ -66,35 +70,35 @@ def true_positive_rate(y_true, y_pred):
         true_positive_rate = tp / positives
     return true_positive_rate
 
-def calculate_demographic_parity(df_privileged:pd.DataFrame, df_unprivileged:pd.DataFrame):
-    privileged_number = df_privileged.shape[0]
-    if privileged_number >0:
-        privileged_positive_percent = sum(df_privileged[prediction_column]) / privileged_number
+def calculate_demographic_parity(df_background:pd.DataFrame, df_subgroup:pd.DataFrame):
+    background_number = df_background.shape[0]
+    if background_number >0:
+        background_positive_percent = sum(df_background[prediction_column]) / background_number
     else:
-        print('Warning, no privileged example found')
-        privileged_positive_percent = 0
+        print('Warning, no background example found')
+        background_positive_percent = 0
 
-    unprivileged_number = df_privileged.shape[0]
-    if unprivileged_number >0:
-        unprivileged_positive_percent = sum(df_unprivileged[prediction_column]) / unprivileged_number
+    subgroup_number = df_background.shape[0]
+    if subgroup_number >0:
+        subgroup_positive_percent = sum(df_subgroup[prediction_column]) / subgroup_number
     else:
-        print('Warning, no unprivileged example found')
-        unprivileged_positive_percent = 0
+        print('Warning, no subgroup example found')
+        subgroup_positive_percent = 0
     
-    demographic_parity = 1 - abs(privileged_positive_percent-unprivileged_positive_percent)
+    demographic_parity = 1 - abs(background_positive_percent-subgroup_positive_percent)
     return demographic_parity
 
-def calculate_equality(df_privileged, df_unprivileged):
-    fpr_privileged = false_positive_rate(df_privileged[target_column], df_privileged[prediction_column])
-    tpr_privileged = true_positive_rate(df_privileged[target_column], df_privileged[prediction_column])
+def calculate_equality(df_background:pd.DataFrame, df_subgroup:pd.DataFrame):
+    fpr_background = false_positive_rate(df_background[target_column], df_background[prediction_column])
+    tpr_background = true_positive_rate(df_background[target_column], df_background[prediction_column])
 
-    fpr_unprivileged = false_positive_rate(df_unprivileged[target_column], df_unprivileged[prediction_column])
-    tpr_unprivileged = true_positive_rate(df_unprivileged[target_column], df_unprivileged[prediction_column])
+    fpr_subgroup = false_positive_rate(df_subgroup[target_column], df_subgroup[prediction_column])
+    tpr_subgroup = true_positive_rate(df_subgroup[target_column], df_subgroup[prediction_column])
 
-    EqOpp0 = 1 - abs(fpr_privileged - fpr_unprivileged)
-    EqOpp1 = 1 - abs(tpr_privileged - tpr_unprivileged)
+    EqOpp0 = 1 - abs(fpr_background - fpr_subgroup)
+    EqOpp1 = 1 - abs(tpr_background - tpr_subgroup)
     EqOdd = (EqOpp0 + EqOpp1) / 2
-
+    
     return EqOpp1, EqOpp0, EqOdd
 
 def positiveAEG(df:pd.DataFrame, subgroup:str):
@@ -141,9 +145,6 @@ def calculate_bias(df:pd.DataFrame, group:str):
     biases.extend([auc, bnsp_auc, bpsn_auc, posAEG, negAEG])
     return biases
 
-SUBGROUP_AUC = 'auc'
-BPSN_AUC = 'bpsn_auc'  # stands for background positive, subgroup negative
-BNSP_AUC = 'bnsp_auc'  # stands for background negative, subgroup positive
 
 def calculate_metrics(total_df:pd.DataFrame, group:str=None):
     # if group is None return the overall metric. 
@@ -169,33 +170,16 @@ def compute_auc(y_true, y_pred):
     except ValueError:
         return np.nan
 
-def compute_bpsn_auc(df, subgroup, label):
+def compute_bpsn_auc(df:pd.DataFrame, subgroup:str, label:str):
     """Computes the AUC of the within-subgroup negative examples and the background positive examples."""
     subgroup_negative_examples = df[df[subgroup] & (~df[label])]
     non_subgroup_positive_examples = df[(~df[subgroup]) & (df[label])]
     examples = pd.concat([subgroup_negative_examples, non_subgroup_positive_examples])# subgroup_negative_examples.append(non_subgroup_positive_examples)
     return compute_auc(examples[label], examples[probability_column])
 
-def compute_bnsp_auc(df, subgroup, label):
+def compute_bnsp_auc(df:pd.DataFrame, subgroup:str, label:str):
     """Computes the AUC of the within-subgroup positive examples and the background negative examples."""
     subgroup_positive_examples = df[df[subgroup] & (df[label])]
     non_subgroup_negative_examples = df[(~df[subgroup]) & (~df[label])]
     examples = pd.concat([subgroup_positive_examples, non_subgroup_negative_examples]) # subgroup_positive_examples.append(non_subgroup_negative_examples)
     return compute_auc(examples[label], examples[probability_column])
-
-def calculate_overall_auc(df):
-    true_labels = df[target_column]
-    predicted_labels = df[probability_column]
-    return roc_auc_score(true_labels, predicted_labels)
-
-def power_mean(series, p):
-    total = sum(np.power(series, p))
-    return np.power(total / len(series), 1 / p)
-
-def get_final_metric(bias_df, overall_auc, POWER=-5, OVERALL_MODEL_WEIGHT=0.25):
-    bias_score = np.average([
-        power_mean(bias_df[SUBGROUP_AUC], POWER),
-        power_mean(bias_df[BPSN_AUC], POWER),
-        power_mean(bias_df[BNSP_AUC], POWER)
-    ])
-    return (OVERALL_MODEL_WEIGHT * overall_auc) + ((1 - OVERALL_MODEL_WEIGHT) * bias_score)

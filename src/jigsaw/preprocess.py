@@ -2,9 +2,9 @@
 After running these following lines, copy the train, test, validation
 csv files manually into the corresponding results/run folder
 
-python preprocess.py --seed 2022 --path "experiment" --run 1
-python preprocess.py --seed 42 --path "experiment" --run 2
-python preprocess.py --seed 888 --path "experiment" --run 3
+python preprocess.py --seed 2022 --path "experiment" --run 1 --input all_data.csv
+python preprocess.py --seed 42 --path "experiment" --run 2  --input all_data.csv
+python preprocess.py --seed 888 --path "experiment" --run 3  --input all_data.csv
 """
 import pandas as pd
 import argparse
