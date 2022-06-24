@@ -15,8 +15,8 @@ dataset_name = 'ucberkeley'
 model_name = 'bert-base-uncased'
 raw_id_column = 'comment_id'
 dataset_directory = f'../../results/{dataset_name}/'
-dataset_directory = '../../../experiment/ucberkeley 1e-3/'
 epsilon_list = [0.5, 1.0, 3.0, 6.0, 9.0]
+runs = 3
 
 group_map = {
     'gender':['target_gender_men', 'target_gender_women', 'target_gender_transgender'],
@@ -33,9 +33,9 @@ print(f'Sensitive attributes {attributes}')
 print(f'Protected subgroups {protected_subgroups}')
 
 counts = []
-for run in range(1, 4):
+for run in range(1, runs+1):
     run_folder = f'{dataset_directory}/run {run}'
-    model_folder = run_folder # os.path.join(run_folder, model_name)
+    model_folder = os.path.join(run_folder, model_name)
     normal_folder = os.path.join(model_folder, 'normal')
     result_filepath = os.path.join(normal_folder, 'results.csv')
 
