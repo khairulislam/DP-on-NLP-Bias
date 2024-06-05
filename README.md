@@ -145,15 +145,17 @@ Run the `batch_benchmark.py` script in each dataset folder to benchmark all runs
 
 Our results find that bias degrades for both dataset.This is based on the AUC based metrics.
 
-### Jigsaw
-
-* Background Positive Subgroup Negative: ![Jigsaw-BPSN](results/jigsaw/average/bert-base-uncased/bpsn.png)
-* Background Negative Subgroup Positive: ![Jigsaw-BNSP](results/jigsaw/average/bert-base-uncased/bnsp.png)
-
-### UCBerkeley
-
-* Background Positive Subgroup Negative: ![UCBerkeley-BPSN](results/ucberkeley/average/bert-base-uncased/bpsn.png)
-* Background Negative Subgroup Positive: ![UCBerkeley-BNSP](results/ucberkeley/average/bert-base-uncased/bnsp.png)
+|Metric | Jigsaw | UCBerkeley |
+|:---:|:---:|:---:|
+| Background Positive Subgroup Negative | ![Jigsaw-BPSN](results/jigsaw/average/bert-base-uncased/bpsn.png) |  ![UCBerkeley-BPSN](results/ucberkeley/average/bert-base-uncased/bpsn.png) |
+| Background Negative Subgroup Positive | ![Jigsaw-BNSP](results/jigsaw/average/bert-base-uncased/bnsp.png) | ![UCBerkeley-BNSP](results/ucberkeley/average/bert-base-uncased/bnsp.png) | 
+| Protected Accuracy | ![link](results/jigsaw/average/bert-base-uncased/p-accuracy.png) | ![link](results/ucberkeley/average/bert-base-uncased/p-accuracy.png) |
+| EqualityOdd | ![link](results/jigsaw/average/bert-base-uncased/eqOdd.png) | ![link](results/ucberkeley/average/bert-base-uncased/eqOdd.png) |
+| Precision | [link](results/jigsaw/average/bert-base-uncased/precision.pdf) | [link](results/ucberkeley/average/bert-base-uncased/precision.pdf) |
+| Recall | [link](results/jigsaw/average/bert-base-uncased/recall.pdf) | [link](results/ucberkeley/average/bert-base-uncased/recall.pdf) | 
+| Equality Opportunity (1) | [link](results/jigsaw/average/bert-base-uncased/eqOpp1.pdf) | [link](results/ucberkeley/average/bert-base-uncased/eqOpp1.pdf) |
+| Equality Opportunity (0) | [link](results/jigsaw/average/bert-base-uncased/eqOpp0.pdf) | [link](results/ucberkeley/average/bert-base-uncased/eqOpp0.pdf) |
+| Parity | [link](results/jigsaw/average/bert-base-uncased/parity.pdf) | [link](results/ucberkeley/average/bert-base-uncased/parity.pdf) |
 
 ## References
 
