@@ -1,8 +1,22 @@
 # Evaluating Bias and Robustness of Differentially Private NLP Models
 
+Paper link: [Does Differential Privacy Impact Bias in Pretrained Language Models?](http://sites.computer.org/debull/A24june/p125.pdf) - Bulletin of the IEEE Computer Society Technical Committee on Data Engineering (2023).
+
 ## Introduction
 
 In this work we evaluate how differentially private training impacts the Bias in NLP models. We choose two very popular hate speech detection datasets [Jigsaw Unintended Bias](https://www.kaggle.com/competitions/jigsaw-unintended-bias-in-toxicity-classification/overview) by Jigsaw [[1]](#borkan) and [Measuring Hate Speech](https://huggingface.co/datasets/ucberkeley-dlab/measuring-hate-speech) by UCBerkeley [[2]](#reddy). We experiment with different privacy budgets, bias metrics to perform the evaluation. Our experiments show that Differential Privacy (DP) can increase the bias of the NLP model and make it more uncertain about distinguishing the pos/neg examples in the protected groups from others.
+
+## Citation
+
+```bash
+@article{islam2023does,
+  title={Does Differential Privacy Impact Bias in Pretrained Language Models?},
+  author={Islam, Md Khairul and Wang, Andrew and Wang, Tianhao and Ji, Yangfeng and Fox, Judy and Zhao, Jieyu},
+  journal={Data Engineering},
+  pages={126},
+  year={2023}
+}
+```
 
 ## Folder Structure
 
